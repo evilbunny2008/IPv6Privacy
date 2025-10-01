@@ -4,10 +4,13 @@ import subprocess
 
 # Check if all nessecary packages are installed and install the missing ones
 try:
-    packages = ["python3-netifaces", "python3-dnspython", "python3-pexpect", "python3-psutil"]
-    missing = [pkg for pkg in packages if subprocess.run(["dpkg", "-s", pkg], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode != 0]
+    packages = ["python3-netifaces", "python3-dnspython",
+                "python3-pexpect", "python3-psutil"]
+    missing = [pkg for pkg in packages if subprocess.run(["dpkg", "-s", pkg],
+                stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode != 0]
     if missing:
-        subprocess.run(["apt", "-y", "install"] + missing, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        subprocess.run(["apt", "-y", "install"] + missing,
+                stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 except Exception as e:
     sys.exit(f"Exception: {str(e)}")
 
@@ -48,7 +51,9 @@ def get_default_nic():
 # Find the stable privacy IP of dev
 def get_stable_ipv6(dev):
     try:
-        result = subprocess.run(["ip", "-6", "addr", "show", "dev", dev, "scope", "global", "mngtmpaddr"], capture_output=True, text=True, check=True)
+        result = subprocess.run(
+            ["ip", "-6", "addr", "show", "dev", dev, "scope", "global", "mngtmpaddr"],
+            capture_output=True, text=True, check=True)
 
         for line in result.stdout.strip().splitlines():
             if line:
@@ -190,9 +195,14 @@ def check_host_or_ip(ssh_args):
 
 def main():
     # Load and parse commandline arguments
-    parser = argparse.ArgumentParser(description="Wrapper around ssh that ensures a host/IP is provided.")
-    parser.add_argument("-i", "--interface", default=None, help="Specify network interface")
-    parser.add_argument("ssh_args", nargs=argparse.REMAINDER, help="Arguments passed to ssh (must include a hostname/IP)")
+    parser = argparse.ArgumentParser(
+        description="Wrapper around ssh that ensures a host/IP is provided.")
+    parser.add_argument(
+        "-i", "--interface", default=None,
+        help="Specify network interface")
+    parser.add_argument(
+        "ssh_args", nargs=argparse.REMAINDER,
+        help="Arguments passed to ssh (must include a hostname/IP)")
     args = parser.parse_args()
 
     # Check that there is at least one argument, presumably a hostname or IP
