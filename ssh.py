@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 
 import subprocess
 
@@ -28,8 +28,10 @@ debug = 1
 def is_global_ip(ip_str):
     try:
         ip = ipaddress.ip_address(ip_str)
-        if ip.is_global:
-            return "wan"
+        if isinstance(ip, ipaddress.IPv6Address) and ip.is_global:
+            return "wanv6"
+        elif ip.is_global:
+            return "wanv4"
         return "lan"
     except Exception:
         pass
@@ -145,7 +147,7 @@ def check_host_or_ip(ssh_args):
     """
     Iterate over ssh_args, find first host/IP, check if LAN or global,
     and return:
-        is_lan        : none, lan or wan depending if the host resolves only to LAN IPs
+        is_lan        : none, lan, wanv4 or wanv6 depending if any hostname resolves only to LAN IPs or IPv4 IPs
     """
 
     is_lan = "none"
@@ -170,7 +172,7 @@ def check_host_or_ip(ssh_args):
 
         if ip_host == "ip":
             ret = is_global_ip(arg)
-            if ret in ("lan", "wan"):
+            if ret in ("lan", "wanv4", "wanv6"):
                 is_lan = ret
                 break
 
@@ -183,7 +185,7 @@ def check_host_or_ip(ssh_args):
                 if debug > 0:
                     print(f"ret: {ret}...")
 
-                if ret in ("lan", "wan"):
+                if ret in ("lan", "wanv4", "wanv6"):
                     is_lan = ret
                     break
 
@@ -233,8 +235,8 @@ def main():
     # Start building the ssh commandline arguments
     ssh_cmd = ["-tt"] + args.ssh_args
 
-    # If connecting to a server not on the LAN bind to the network interface and IP
-    if is_lan == "wan":
+    # If connecting to a server via IPv6 that isn't on the LAN bind to the network interface and IP
+    if is_lan == "wanv6":
         stable_ip = get_stable_ipv6(dev)
         ssh_cmd += ["-B", dev]
         ssh_cmd += ["-b", stable_ip]
