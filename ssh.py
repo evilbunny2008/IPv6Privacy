@@ -1,5 +1,10 @@
 #!/usr/bin/python3
 
+# Add the following lines to /etc/bash.bashrc to set this script to be the default when typing ssh on the commandline.
+# ssh() {
+#  /usr/bin/ssh.py "$@"
+# }
+
 import subprocess
 
 # Check if all nessecary packages are installed and install the missing ones
@@ -242,10 +247,10 @@ def main():
         ssh_cmd += ["-b", stable_ip]
 
     if debug > 0:
-        print(["ssh"] + ssh_cmd)
+        print(["/usr/bin/ssh"] + ssh_cmd)
 
     # Everything should be good to connect now
-    child = pexpect.spawn("ssh", args=ssh_cmd)
+    child = pexpect.spawn("/usr/bin/ssh", args=ssh_cmd)
     set_winsize(child)
     signal.signal(signal.SIGWINCH, sigwinch_passthrough)
     child.interact()
