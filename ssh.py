@@ -29,32 +29,58 @@ import sys
 
 debug = 1
 
+# Load and parse commandline arguments
+parser = argparse.ArgumentParser(description="Wrapper around ssh that ensures a host/IP is provided.")
+parser.add_argument("-4", dest="ipv4", action="store_true", help="Force IPv4 connection")
+parser.add_argument("-6", dest="ipv6", action="store_true", help="Force IPv6 connection")
+parser.add_argument("-i", "--interface", default=None, help="Specify network interface")
+parser.add_argument("ssh_args", nargs=argparse.REMAINDER, help="Arguments passed to ssh (must include a hostname/IP)")
+args = parser.parse_args()
+
 # Check if a string is a valid routable IP
 def is_global_ip(ip_str):
+
+    global args
+
     try:
         ip = ipaddress.ip_address(ip_str)
-        if isinstance(ip, ipaddress.IPv6Address) and ip.is_global:
-            return "wanv6"
-        elif ip.is_global:
-            return "wanv4"
+    except ValueError:
+        return "none"
+
+    if not ip.is_global:
         return "lan"
-    except Exception:
-        pass
+
+    if isinstance(ip, ipaddress.IPv6Address):
+        # Force IPv6 or default behaviour when only v6 is allowed
+        if not args.ipv4:
+            return "wanv6"
+
+    if isinstance(ip, ipaddress.IPv4Address):
+        # Force IPv4 or default behaviour when only v4 is allowed
+        if not args.ipv6:
+            return "wanv4"
 
     return "none"
 
 # Find the default interface
 def get_default_nic():
+
     gws = netifaces.gateways()
+
     default_gateway = gws.get('default', {})
+
     if netifaces.AF_INET in default_gateway:
         return default_gateway[netifaces.AF_INET][1]
     elif netifaces.AF_INET6 in default_gateway:
         return default_gateway[netifaces.AF_INET6][1]
+
     return "none"
 
 # Find the stable privacy IP of dev
 def get_stable_ipv6(dev):
+
+    global parser
+
     try:
         result = subprocess.run(["ip", "-6", "addr", "show", "dev", dev, "scope", "global", "mngtmpaddr"], capture_output=True, text=True, check=True)
 
@@ -71,10 +97,12 @@ def get_stable_ipv6(dev):
     except Exception:
         pass
 
-    sys.exit(f"Failed to find a stable privacy IP on dev {dev}")
+    parser.error(f"Failed to find a stable privacy IP on dev {dev}")
 
 # Get IPs for a given hostname, which can then be tested to find out if they are on the LAN or not
 def resolve_host(hostname):
+
+    global args
 
     res = dns.resolver.Resolver()
     res.timeout = 2
@@ -92,22 +120,24 @@ def resolve_host(hostname):
         tried.add(name)
 
         try:
-            answers = res.resolve(name, dns.rdatatype.AAAA)
-            if debug > 0:
-                for rdata in answers:
-                    print(f"Received the following answers: {rdata}")
-            return [rdata.address for rdata in answers]
+            if not args.ipv4:
+                answers = res.resolve(name, dns.rdatatype.AAAA)
+                if debug > 0:
+                    for rdata in answers:
+                        print(f"Received the following answers: {rdata}")
+                return [rdata.address for rdata in answers]
         except (dns.resolver.NoAnswer, dns.exception.Timeout):
             pass
         except dns.resolver.NXDOMAIN:
             return "none"
 
         try:
-            answers = res.resolve(name, dns.rdatatype.A)
-            if debug > 0:
-                for rdata in answers:
-                    print(f"Received the following answers: {rdata}")
-            return [rdata.address for rdata in answers]
+            if not args.ipv6:
+                answers = res.resolve(name, dns.rdatatype.A)
+                if debug > 0:
+                    for rdata in answers:
+                        print(f"Received the following answers: {rdata}")
+                return [rdata.address for rdata in answers]
         except (dns.resolver.NoAnswer, dns.exception.Timeout):
             pass
         except dns.resolver.NXDOMAIN:
@@ -155,6 +185,8 @@ def check_host_or_ip(ssh_args):
         is_lan        : none, lan, wanv4 or wanv6 depending if any hostname resolves only to LAN IPs or IPv4 IPs
     """
 
+    global args
+
     is_lan = "none"
 
     for arg in ssh_args:
@@ -177,7 +209,13 @@ def check_host_or_ip(ssh_args):
 
         if ip_host == "ip":
             ret = is_global_ip(arg)
-            if ret in ("lan", "wanv4", "wanv6"):
+            if ret == "lan":
+                is_lan = ret
+                break
+            if not args.ipv4 and ret == "wanv6":
+                is_lan = ret
+                break
+            if not args.ipv6 and ret == "wanv4":
                 is_lan = ret
                 break
 
@@ -190,7 +228,13 @@ def check_host_or_ip(ssh_args):
                 if debug > 0:
                     print(f"ret: {ret}...")
 
-                if ret in ("lan", "wanv4", "wanv6"):
+                if ret == "lan":
+                    is_lan = ret
+                    break
+                if not args.ipv4 and ret == "wanv6":
+                    is_lan = ret
+                    break
+                if not args.ipv6 and ret == "wanv4":
                     is_lan = ret
                     break
 
@@ -205,15 +249,14 @@ def sigwinch_passthrough(sig, data):
     set_winsize(child)
 
 def main():
-    # Load and parse commandline arguments
-    parser = argparse.ArgumentParser(description="Wrapper around ssh that ensures a host/IP is provided.")
-    parser.add_argument("-i", "--interface", default=None, help="Specify network interface")
-    parser.add_argument("ssh_args", nargs=argparse.REMAINDER, help="Arguments passed to ssh (must include a hostname/IP)")
-    args = parser.parse_args()
+    global parser, args
+
+    if args.ipv4 and args.ipv6:
+        parser.error("Error: You cannot use -4 and -6 at the same time.")
 
     # Check that there is at least one argument, presumably a hostname or IP
     if not args.ssh_args:
-        sys.exit("Error: You must provide a hostname or IP for ssh.")
+        parser.error("Error: You must provide a hostname or IP for ssh.")
 
     # Check for a submitted network interface, otherwise get the default network interface
     dev = args.interface
@@ -221,7 +264,7 @@ def main():
         dev = get_default_nic()
 
     if dev not in netifaces.interfaces():
-        sys.exit("Error: {dev} isn't a valid interface.")
+        parser.error("Error: {dev} isn't a valid interface.")
 
     iface_stat = False
     for iface, stats in psutil.net_if_stats().items():
@@ -230,15 +273,22 @@ def main():
             break
 
     if not iface_stat:
-        sys.exit("Error: {dev} isn't up.")
+        parser.error("Error: {dev} isn't up.")
 
     # Send all ssh args to find the hostname or IP to connect to
     is_lan = check_host_or_ip(args.ssh_args)
     if is_lan == "none":
-        sys.exit("Error: You must provide a hostname or IP for ssh.")
+        parser.error("Error: You must provide a hostname or IP for ssh.")
 
     # Start building the ssh commandline arguments
-    ssh_cmd = ["-tt"] + args.ssh_args
+    ssh_cmd = ["-tt"]
+
+    if args.ipv4:
+        ssh_cmd += ["-4"]
+    elif args.ipv6:
+        ssh_cmd += ["-6"]
+
+    ssh_cmd += args.ssh_args
 
     # If connecting to a server via IPv6 that isn't on the LAN bind to the network interface and IP
     if is_lan == "wanv6":
