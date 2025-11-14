@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# Add the following lines to /etc/bash.bashrc to set this script to be the default when typing ssh on the commandline.
+# Add the following lines to /etc/profile.d/ssh.sh to set this python script to be the default when typing ssh on the commandline.
 # ssh() {
 #  /usr/bin/ssh.py "$@"
 # }
