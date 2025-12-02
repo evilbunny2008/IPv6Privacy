@@ -89,7 +89,7 @@ log "${CYAN}Compressing log...${RESET}"
 #gzip -9 -c "$LOGFILE" > "$OUTFILE"
 
 # Use xz to compress
-xz -9 -e -z "$LOGFILE" > "$OUTFILE"
+xz -9 -e -z -c "$LOGFILE" > "$OUTFILE"
 
 # === EMAIL SENDING ===
 {
