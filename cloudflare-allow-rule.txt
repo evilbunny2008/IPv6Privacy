@@ -1,0 +1,2 @@
+# I added the following skip rule on Cloudflare's dash to extempt Googlebot, Bingbot, Archive.org and Let's Encrypt SSL certificate verification path
+(cf.client.bot and ip.geoip.asnum in {15169 8075}) or (ip.src.asnum in {7941}) or (http.request.uri.path wildcard r"/.well-known/acme-challenge/*")
