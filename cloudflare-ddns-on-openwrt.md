@@ -53,9 +53,10 @@
 15. For "Network" select "wan" for IPv4 or "wan6" for IPv6
 16. It's a good idea to set the "DNS-Server" to an external public resolver, such as 1.1.1.1 for Cloudflare's or 8.8.8.8 for Google's, because the DDNS scripts check what the IPs are in DNS before attempting to update Cloudflare
 17. Change the rest of the settings to suit
-18. When you're happy click "Save" at the bottom right.
+18. When you're happy click "Save" at the bottom right
 19. Rinse and repeat for IPv6
-20. Click "Save & Apply" at the bottom right.
+
+Don't forget to click "Save & Apply" at the bottom right
 
 ### If OpenWRT doesn't trigger an immediate update
 - Click "Start DDNS"
