@@ -1,7 +1,7 @@
 # Basic cloudflared config.yaml for openwrt
 #
 # You will also need at least some of the following packages
-# opkg install cloudflared coreutils-base64 curl luci-app-cloudflared nano-full wget
+# opkg install ca-bundle ca-certificates cloudflared coreutils-base64 curl luci-app-cloudflared nano-full wget
 #
 # You also need to generated a client auth certificate by doing the following:
 # cloudflared tunnel login
