@@ -19,12 +19,23 @@
 4. For IPv6 select click "Add record" again, then select "AAAA" then type in the hostname again, eg "router", then for the IP set it as ::1 again make sure the "Proxy status" switch is disabled and then click "Save"
 
 ### Open the OpenWRT webUI
-There should be a menu labelled "Services", then select "Dynamic DNS" from the drop down
+1. Go to the "System" menu, and click "Software"
+2. Click the "Update Lists" button to make sure your router has the latest version list of available packages
+3. In the "Filter:" text box type in and install the following packages
+- curl
+- ca-bundle
+- ca-certificates
+- ddns-scripts
+- ddns-scripts-cloudflare
+- ddns-scripts-luadns
+- ddns-scripts-services
+- wget
 
 ### DDNS Configuration Steps
-- If there is 2 disabled Cloudflare DDNS lines, simply click edit on each and update similarly to below, make sure you enable them
+- There should be a menu labelled "Services" in the middle at the top of the page
+- Select "Dynamic DNS" from the drop down
+- If there is 2 disabled Cloudflare DDNS lines, simply click edit on each and update as below, make sure you enable them
 - If there isn't any DDNS services listed follow the steps below to add them
-
 1. Click on "Add new services"
 2. Give it a useful display name, eg CloudflareDDNSv4
 3. Select IPv4
@@ -49,11 +60,11 @@ There should be a menu labelled "Services", then select "Dynamic DNS" from the d
 ### If OpenWRT doesn't trigger an immediate update
 - Click "Start DDNS"
 
-### If after a few seconds the IPs don't update under where "router.example.com"
+### If after a few seconds the current IPs don't display under "router.example.com"
  - There may be a problem with your config
 
 1. Click edit on one of the DDNS lines
-2. Select the "Log File Viewer" tab
+2. Select the "Log File Viewer" tab at the top right of the page
 3. Click the "Read / Reread log file"
 4. Read through the log for any errors and make changes to the DDNS config
 5. Click "Save"
