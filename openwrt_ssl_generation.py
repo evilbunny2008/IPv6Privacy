@@ -3,6 +3,7 @@
 #
 # Simple script to generate a CA PKI key pair and a server key pair acceptable bu Adguard Home and uhttpd running on OpenWRT
 # TODO: Could be made more useful by accepting and reading command line arguments so multiple server certs could be issued etc
+# Note: Adguard doesn't currectly accept/recognise ED25519/X25519 certificates and keys...
 #
 
 import datetime
