@@ -8,6 +8,25 @@
 # Note: Adguard Home doesn't currectly accept/recognise ED25519/X25519 certificates and keys...
 #
 
+# To use the key and certificate in Adguard Home, just go into the webUI, open the "Settings" menu and select
+# "Encryption settings" then scroll to the bottom of the page and select "aste the certificates contents" then
+# paste the PEM encoded certificate into the box below. Then select "Paste the private key contents" and make sure
+# the "Use the previously saved key" check box is unticked and paste the PEM encoded key into the box below.
+#
+# Because the CA certificate isn't signed by another CA already in one of the certificates in /etc/ssl/certs
+# Adguard home will display a warning about not being able to verify the certificate, this is normal just
+# click "Save configuration" button at the bottom left to enable it.
+#
+# Unfortunately the OpenWRT website doesn't have a webUI option to set/update the key pair like Adguard, so
+# you need to ssh into the router using 'root' as the username and the webUI password for the password. Then
+#
+# echo "<paste server PEM certificate here>" > /etc/uhttpd.crt
+# echo "<paste server PEM key here>" > /etc/uhttpd.key
+# /etc/init.d/uhttpd restart
+#
+# And then your browser will no longer complain about invalid certificates
+#
+
 import datetime
 import ipaddress
 import os
