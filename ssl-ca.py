@@ -16,12 +16,15 @@ from cryptography.hazmat.primitives import serialization, hashes
 from cryptography.hazmat.primitives.asymmetric import ec
 from cryptography.x509.oid import NameOID
 
-# Default file names for the CA PKI key pair
+#
+# Default file names for the CA PKI key pair, if you change either make sure to update ssl-server.py as well
 #
 ca_file_crt = "ca_ec.crt"
 ca_file_key = "ca_ec.key"
 
-# Nothing else needs configuring below
+#
+# Nothing else needs configuring below, hostnames and IPs are read from the command line
+#
 
 def outputCertDetails(cert):
     print("Certificate Details:")
