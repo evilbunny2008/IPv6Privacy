@@ -22,7 +22,9 @@ from cryptography.x509.oid import NameOID
 ca_file_crt = "ca_ec.crt"
 ca_file_key = "ca_ec.key"
 
-# Set the CA certificate subject to something memorable
+#
+# Set the CA certificate subject to something memorable that you will recognise in the list of authorities in browsers
+#
 CAsubject = "MyRootCA (EC SECP256R1/SHA512)"
 
 #
