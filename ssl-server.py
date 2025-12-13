@@ -17,8 +17,9 @@
 # Adguard home will display a warning about not being able to verify the certificate, this is normal just
 # click "Save configuration" button at the bottom left to enable it.
 #
-# Unfortunately the OpenWRT website doesn't have a webUI option to set/update the key pair like Adguard, so
-# you need to ssh into the router using 'root' as the username and the webUI password for the password. Then
+# If you install the luci-app-uhttpd package the OpenWRT webUI has the "uHTTPd" option in the "Services" menu
+# which allows you to upload the key/certificate pair like in Adguard Home's webUI, alternatively you can ssh 
+# into the router using 'root' as the username and the webUI password for the password. Then
 #
 # echo "<paste server PEM certificate here>" > /etc/uhttpd.crt
 # echo "<paste server PEM key here>" > /etc/uhttpd.key
