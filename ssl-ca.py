@@ -2,7 +2,7 @@
 
 #
 # Simple script to generate a CA PKI key pair acceptable by Adguard Home and uhttpd running on OpenWRT
-# Note: Adguard doesn't currectly accept/recognise ED25519/X25519 certificates and keys...
+# Note: Adguard Home doesn't currectly accept/recognise ED25519/X25519 certificates and keys...
 #
 
 import datetime
