@@ -23,7 +23,7 @@ ca_file_crt = "ca_ec.crt"
 ca_file_key = "ca_ec.key"
 
 #
-# Nothing else needs configuring below, hostnames and IPs are read from the command line
+# Nothing else needs configuring below this line
 #
 
 def outputCertDetails(cert):
