@@ -22,6 +22,9 @@ from cryptography.x509.oid import NameOID
 ca_file_crt = "ca_ec.crt"
 ca_file_key = "ca_ec.key"
 
+# Set the CA certificate subject to something memorable
+CAsubject = "MyRootCA (EC SECP256R1/SHA512)"
+
 #
 # Nothing else needs configuring below this line
 #
@@ -95,15 +98,36 @@ if not os.path.exists(ca_file_key):
             encryption_algorithm=serialization.NoEncryption()
         ))
 
-ca_subject = x509.Name([x509.NameAttribute(NameOID.COMMON_NAME, u'MyRootCA (EC SECP256R1/SHA512)')])
-ca_cert = x509.CertificateBuilder()\
-    .subject_name(ca_subject)\
-    .issuer_name(ca_subject)\
-    .public_key(ca_key.public_key())\
-    .serial_number(x509.random_serial_number())\
-    .not_valid_before(utc_now)\
-    .not_valid_after(utc_now + datetime.timedelta(days=10000))\
+ca_subject = x509.Name([x509.NameAttribute(NameOID.COMMON_NAME, CAsubject)])
+ca_cert = (
+    x509.CertificateBuilder()
+    .subject_name(ca_subject)
+    .issuer_name(ca_subject)
+    .public_key(ca_key.public_key())
+    .serial_number(x509.random_serial_number())
+    .not_valid_before(utc_now)
+    .not_valid_after(utc_now + datetime.timedelta(days=10000))
+    # Mark as CA
+    .add_extension(
+        x509.BasicConstraints(ca=True, path_length=None),
+        critical=True
+    )
+    .add_extension(
+        x509.KeyUsage(
+            digital_signature=True,
+            key_cert_sign=True,
+            key_encipherment=False,
+            content_commitment=False,
+            data_encipherment=False,
+            key_agreement=False,
+            encipher_only=False,
+            decipher_only=False,
+            crl_sign=True
+        ),
+        critical=True
+    )
     .sign(private_key=ca_key, algorithm=hashes.SHA512())
+)
 
 with open(ca_file_crt, "wb") as f:
     f.write(ca_cert.public_bytes(serialization.Encoding.PEM))
