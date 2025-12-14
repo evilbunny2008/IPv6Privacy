@@ -112,7 +112,8 @@ def main():
                     if rules:
                         ruleid = int(rules[0].get("filter_list_id", 0))
 
-                    blocked = 1
+                    if not rule.startswith("@@"):
+                        blocked = 1
 
                 c.execute("""
                     INSERT IGNORE INTO querylog
