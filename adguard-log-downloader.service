@@ -7,7 +7,6 @@ Wants=network-online.target
 Type=oneshot
 ExecStart=/usr/bin/python3 /var/scripts/adguard-log-downloader.py
 
-# Hardening
 NoNewPrivileges=yes
 PrivateTmp=yes
 ProtectSystem=strict
@@ -21,14 +20,11 @@ RestrictRealtime=yes
 RestrictSUIDSGID=yes
 SystemCallArchitectures=native
 
-# Allow DB + network
 RestrictAddressFamilies=AF_INET AF_INET6
 
-# Logging
 StandardOutput=journal
 StandardError=journal
 
-# Resource limits
 Nice=10
 IOSchedulingClass=best-effort
 IOSchedulingPriority=6
