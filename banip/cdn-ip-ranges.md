@@ -13,7 +13,7 @@ Below are links to plain text lists of their ranges excluding their public resol
 
 Fastly also proxies a large volume of traffic so it's not a good idea to try and block their IPs either, below is a link to a JSON formatted list
 
- - https://api.fastly.com/public-ip-list (in json format)
+ - https://api.fastly.com/public-ip-list
 
 ### Other reverse proxy companies?
 
