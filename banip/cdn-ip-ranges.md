@@ -15,18 +15,20 @@ Fastly also proxies a large volume of traffic so it's not a good idea to try and
 
  - https://api.fastly.com/public-ip-list
 
+### Other reverse proxy companies?
+
+Please let me know of other reverse proxy companies!
+
+## Blocking DoH/DoQ hostnames
+
+## List of known hostnames that reply to DoH/DoQ requests
+
+Since DoH implementations rely on hostnames, rather than IPs, using the below list in Adguard Home/Pihole etc may be a much more effective method of stopping DoH/DoQ DNS requests
+
+ - https://adguardteam.github.io/HostlistsRegistry/assets/filter_52.txt
+
 ### Additional DoH/DoQ hosts
 
  - ||dns.opendoh.com^$important
  - ||app.opendoh.com^$important
  - ||adblock.opendoh.com^$important
-
-### Other reverse proxy companies?
-
-Please let me know of other reverse proxy companies!
-
-## Blcoking known DoH/DoQ hostnames
-
-Since DoH implementations rely on hostnames, rather than IPs, using the below list in Adguard Home/Pihole etc may be a much more effective method of stopping DoH/DoQ DNS requests
-
- - https://adguardteam.github.io/HostlistsRegistry/assets/filter_52.txt
