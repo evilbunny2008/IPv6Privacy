@@ -15,6 +15,12 @@ Fastly also proxies a large volume of traffic so it's not a good idea to try and
 
  - https://api.fastly.com/public-ip-list
 
+### Additional DoH/DoQ hosts
+
+ - ||dns.opendoh.com^$important
+ - ||app.opendoh.com^$important
+ - ||adblock.opendoh.com^$important
+
 ### Other reverse proxy companies?
 
 Please let me know of other reverse proxy companies!
