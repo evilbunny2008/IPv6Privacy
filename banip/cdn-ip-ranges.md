@@ -23,7 +23,7 @@ Please let me know of other reverse proxy companies!
 
 ### List of known hostnames that reply to DoH/DoQ requests
 
-Since DoH/DoQ implementations usually rely on hostnames, rather than IPs, using the below list in Adguard Home/Pi-hole etc should be more effective at stopping DoH/DoQ DNS requests
+Since DoH/DoQ implementations usually rely on hostnames, rather than IPs, using the below list in Adguard Home/Pi-hole etc should be more effective at stopping DoH/DoQ DNS requests even being sent.
 
  - https://adguardteam.github.io/HostlistsRegistry/assets/filter_52.txt
 
