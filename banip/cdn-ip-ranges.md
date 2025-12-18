@@ -21,7 +21,7 @@ Please let me know of other reverse proxy companies!
 
 ## Blocking DoH/DoQ hostnames
 
-## List of known hostnames that reply to DoH/DoQ requests
+### List of known hostnames that reply to DoH/DoQ requests
 
 Since DoH implementations rely on hostnames, rather than IPs, using the below list in Adguard Home/Pihole etc may be a much more effective method of stopping DoH/DoQ DNS requests
 
