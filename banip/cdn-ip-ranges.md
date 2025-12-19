@@ -25,7 +25,9 @@ Please let me know of other reverse proxy companies!
 
 Since DoH/DoQ implementations usually rely on hostnames, rather than IPs, using the below list in Adguard Home/Pi-hole etc should be more effective at stopping DoH/DoQ DNS requests even being sent.
 
- - https://adguardteam.github.io/HostlistsRegistry/assets/filter_52.txt
+ - https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/adblock/doh.txt
+
+While Adguard has a list of known DoH/DoQ/DoT serving hostnames, it comes bundled with VPN and TOR hostnames as well, the above link is for the DNS servers only.
 
 ### Additional DoH/DoQ hosts
 
