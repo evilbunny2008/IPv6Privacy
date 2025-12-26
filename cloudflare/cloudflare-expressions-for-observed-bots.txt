@@ -57,29 +57,32 @@
         198.235.24.151 202.76.191.106 205.210.31.169 208.84.102.244 222.137.47.214 2001:4860:7:232::fe 240d:c010:146:1::2b 240d:c010:198:1::17 240d:c010:198:1::18 240d:c010:ca:2::24 240d:c010:d5:2::12 2a01:239:422:c00::1}) or
 
 # Common bot user-agents, who knew there were so many, list expanded from Cloudflare's list of known AI bots, Bingbot and Googlebot excluded so my site will show in their search engines
-(http.user_agent contains "AhrefsBot") or 
-(http.user_agent contains "ALittle Client") or 
-(http.user_agent contains "AliyunSecBot") or 
-(http.user_agent contains "Applebot") or 
-(http.user_agent contains "AwarioBot") or 
-(http.user_agent contains "ChatGPT-User") or 
-(http.user_agent contains "ClaudeBot") or 
-(http.user_agent contains "l9scan") or 
-(http.user_agent contains "meta-externalfetcher") or 
-(http.user_agent contains "meta-webindexer") or 
-(http.user_agent contains "MistralAI-User") or 
-(http.user_agent contains "MJ12bot") or 
-(http.user_agent contains "OAI-SearchBot") or 
-(http.user_agent contains "Perplexity-User") or 
-(http.user_agent contains "PerplexityBot") or 
-(http.user_agent contains "PetalBot") or 
-(http.user_agent contains "ProRataInc") or 
-(http.user_agent contains "SeznamBot") or 
-(http.user_agent contains "Sogou web spider") or 
-(http.user_agent contains "TikTok") or 
-(http.user_agent contains "Turnitin") or 
-(http.user_agent contains "UGAResearchAgent") or 
-(http.user_agent contains "YandexBot") or 
+(ip.src.asnum in {209366 132203}) or
+ (http.user_agent contains "AhrefsBot") or
+ (http.user_agent contains "ALittle Client") or
+ (http.user_agent contains "AliyunSecBot") or
+ (http.user_agent contains "Applebot") or
+ (http.user_agent contains "AwarioBot") or
+ (http.user_agent contains "ChatGPT-User") or
+ (http.user_agent contains "ChatGPT-User") or
+ (http.user_agent contains "ClaudeBot") or
+ (http.user_agent contains "CMS-Checker") or
+ (http.user_agent contains "l9scan") or
+ (http.user_agent contains "meta-externalfetcher") or
+ (http.user_agent contains "meta-webindexer") or
+ (http.user_agent contains "MistralAI-User") or
+ (http.user_agent contains "MJ12bot") or
+ (http.user_agent contains "OAI-SearchBot") or
+ (http.user_agent contains "Perplexity-User") or
+ (http.user_agent contains "PerplexityBot") or
+ (http.user_agent contains "PetalBot") or
+ (http.user_agent contains "ProRataInc") or
+ (http.user_agent contains "SeznamBot") or
+ (http.user_agent contains "Sogou web spider") or
+ (http.user_agent contains "TikTok") or
+ (http.user_agent contains "Turnitin") or
+ (http.user_agent contains "UGAResearchAgent") or
+ (http.user_agent contains "YandexBot")
 
 # Someone forgot to set the User-Agent before trying to scrape...
 (http.user_agent contains "curl/8") or 
