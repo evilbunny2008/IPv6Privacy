@@ -2,28 +2,28 @@
 # As this list is based on logs for my site you will more than likely have to adjust/tune the below list for your website
 
 # Below is a list of ASNs owned by search engines that seemed to be scraping my site
-(ip.src.asnum in {209366 132203}) or 
+(ip.src.asnum in {209366 132203}) or
 
 # Stop bots getting directory listing for /.well-known/ used for among other things Let's Encrypt SSL certs
-(http.request.uri.path eq r"/.well-known/") or 
+(http.request.uri.path eq r"/.well-known/") or
 
 # Below is common paths of URLs that bots seemed to be trying to access, even though they have never existed on my website
-(http.request.uri.path wildcard r"/1.php*") or 
-(http.request.uri.path wildcard r"/abcd.php*") or 
-(http.request.uri.path wildcard r"/admin*") or 
-(http.request.uri.path wildcard r"/ahax.php*") or 
-(http.request.uri.path wildcard r"/alfa.php*") or 
-(http.request.uri.path wildcard r"/ALFA_DATA*") or 
-(http.request.uri.path wildcard r"/api*") or 
-(http.request.uri.path wildcard r"/bless.php*") or 
-(http.request.uri.path wildcard r"/classwithtostring.php*") or 
-(http.request.uri.path wildcard r"/component*") or 
-(http.request.uri.path wildcard r"/favicon.ico*") or 
-(http.request.uri.path wildcard r"/file.php*") or 
-(http.request.uri.path wildcard r"/function*") or 
-(http.request.uri.path wildcard r"/.git*") or 
-(http.request.uri.path wildcard r"/goods.php*") or 
-(http.request.uri.path wildcard r"/images/*") or 
+(http.request.uri.path wildcard r"/1.php*") or
+(http.request.uri.path wildcard r"/abcd.php*") or
+(http.request.uri.path wildcard r"/admin*") or
+(http.request.uri.path wildcard r"/ahax.php*") or
+(http.request.uri.path wildcard r"/alfa.php*") or
+(http.request.uri.path wildcard r"/ALFA_DATA*") or
+(http.request.uri.path wildcard r"/api*") or
+(http.request.uri.path wildcard r"/bless.php*") or
+(http.request.uri.path wildcard r"/classwithtostring.php*") or
+(http.request.uri.path wildcard r"/component*") or
+(http.request.uri.path wildcard r"/favicon.ico*") or
+(http.request.uri.path wildcard r"/file.php*") or
+(http.request.uri.path wildcard r"/function*") or
+(http.request.uri.path wildcard r"/.git*") or
+(http.request.uri.path wildcard r"/goods.php*") or
+(http.request.uri.path wildcard r"/images/*") or
 (http.request.uri.path wildcard r"/index/*") or 
 (http.request.uri.path wildcard r"/inputs.php*") or 
 (http.request.uri.path wildcard r"/install*") or 
@@ -49,46 +49,48 @@
 (http.request.uri.path wildcard r"/yas.php*") or 
 
 # These IPs used common user-agent strings so need to block by IP instead
-(ip.src in {4.189.112.227 5.133.192.193 5.252.55.178 8.28.7.20 8.217.16.82 8.218.198.0 8.222.232.114 13.223.5.177 20.78.176.21 20.205.13.31 27.106.98.125 27.106.108.44 31.57.38.179 34.195.137.67
-        34.226.69.220 44.217.66.220 45.80.158.164 45.89.70.31 45.148.10.160 46.45.185.171 47.76.77.43 47.237.97.28 47.251.63.145 49.65.18.125 52.70.89.84 54.210.133.241 64.227.65.193 75.119.129.236 84.247.181.144
-        98.93.124.89 103.11.218.6 104.155.112.165 106.75.71.166 107.172.58.36 111.119.200.166 111.119.205.243 111.119.251.92 112.32.239.49 116.204.21.106 120.217.20.30 121.91.175.151 122.8.180.170 122.8.186.4
-        143.244.185.138 149.232.143.41 152.42.177.138 162.128.159.36 162.128.159.120 162.128.163.151 162.128.163.225 162.128.163.235 162.128.163.252 171.83.17.120 175.44.42.38 175.97.131.16 176.125.228.137
-        183.214.237.245 185.195.232.178 185.226.196.25 185.241.208.220 188.239.9.89 188.239.57.1 190.92.217.67 190.92.241.202 193.142.203.109 195.178.110.199 198.235.24.30 198.235.24.32 198.235.24.136
-        198.235.24.151 202.76.191.106 205.210.31.169 208.84.102.244 222.137.47.214 2001:4860:7:232::fe 240d:c010:146:1::2b 240d:c010:198:1::17 240d:c010:198:1::18 240d:c010:ca:2::24 240d:c010:d5:2::12 2a01:239:422:c00::1}) or
+(ip.src in {4.189.112.227 5.133.192.193 5.252.55.178 8.28.7.20 8.217.16.82 8.218.198.0 8.222.232.114 13.223.5.177 20.78.176.21 20.205.13.31 27.106.98.125 27.106.108.44
+31.57.38.179 34.195.137.67 34.226.69.220 44.217.66.220 45.80.158.164 45.89.70.31 45.148.10.160 46.45.185.171 47.76.77.43 47.237.97.28 47.251.63.145 49.65.18.125 52.70.89.84
+54.210.133.241 64.227.65.193 75.119.129.236 84.247.181.144 98.93.124.89 103.11.218.6 104.155.112.165 106.75.71.166 107.172.58.36 111.119.200.166 111.119.205.243 111.119.251.92
+112.32.239.49 116.204.21.106 120.217.20.30 121.91.175.151 122.8.180.170 122.8.186.4 143.244.185.138 149.232.143.41 152.42.177.138 162.128.159.36 162.128.159.120 162.128.163.151
+162.128.163.225 162.128.163.235 162.128.163.252 171.83.17.120 175.44.42.38 175.97.131.16 176.125.228.137 183.214.237.245 185.195.232.178 185.226.196.25 185.241.208.220 188.239.9.89
+188.239.57.1 190.92.217.67 190.92.241.202 193.142.203.109 195.178.110.199 198.235.24.30 198.235.24.32 198.235.24.136 198.235.24.151 202.76.191.106 205.210.31.169 208.84.102.244
+222.137.47.214 2001:4860:7:232::fe 240d:c010:146:1::2b 240d:c010:198:1::17 240d:c010:198:1::18 240d:c010:ca:2::24 240d:c010:d5:2::12 2a01:239:422:c00::1}) or
 
 # Common bot user-agents, who knew there were so many, list expanded from Cloudflare's list of known AI bots, Bingbot and Googlebot excluded so my site will show in their search engines
-(ip.src.asnum in {209366 132203}) or
- (http.user_agent contains "AhrefsBot") or
- (http.user_agent contains "ALittle Client") or
- (http.user_agent contains "AliyunSecBot") or
- (http.user_agent contains "Applebot") or
- (http.user_agent contains "AwarioBot") or
- (http.user_agent contains "ChatGPT-User") or
- (http.user_agent contains "ChatGPT-User") or
- (http.user_agent contains "ClaudeBot") or
- (http.user_agent contains "CMS-Checker") or
- (http.user_agent contains "l9scan") or
- (http.user_agent contains "meta-externalfetcher") or
- (http.user_agent contains "meta-webindexer") or
- (http.user_agent contains "MistralAI-User") or
- (http.user_agent contains "MJ12bot") or
- (http.user_agent contains "OAI-SearchBot") or
- (http.user_agent contains "Perplexity-User") or
- (http.user_agent contains "PerplexityBot") or
- (http.user_agent contains "PetalBot") or
- (http.user_agent contains "ProRataInc") or
- (http.user_agent contains "SeznamBot") or
- (http.user_agent contains "Sogou web spider") or
- (http.user_agent contains "TikTok") or
- (http.user_agent contains "Turnitin") or
- (http.user_agent contains "UGAResearchAgent") or
- (http.user_agent contains "YandexBot")
+(http.user_agent contains "AhrefsBot") or
+(http.user_agent contains "ALittle Client") or
+(http.user_agent contains "AliyunSecBot") or
+(http.user_agent contains "Applebot") or
+(http.user_agent contains "AwarioBot") or
+(http.user_agent contains "ChatGPT-User") or
+(http.user_agent contains "ClaudeBot") or
+(http.user_agent contains "CMS-Checker") or
+(http.user_agent contains "l9scan") or
+(http.user_agent contains "MercuryLeads") or
+(http.user_agent contains "meta-externalfetcher") or
+(http.user_agent contains "meta-webindexer") or
+(http.user_agent contains "MistralAI-User") or
+(http.user_agent contains "MJ12bot") or
+(http.user_agent contains "OAI-SearchBot") or
+(http.user_agent contains "Perplexity-User") or
+(http.user_agent contains "PerplexityBot") or
+(http.user_agent contains "PetalBot") or
+(http.user_agent contains "ProRataInc") or
+(http.user_agent contains "SERankingBacklinksBot") or
+(http.user_agent contains "SeznamBot") or
+(http.user_agent contains "Sogou web spider") or
+(http.user_agent contains "TikTok") or
+(http.user_agent contains "Turnitin") or
+(http.user_agent contains "UGAResearchAgent") or
+(http.user_agent contains "WhatCMS") or
+(http.user_agent contains "YandexBot")
 
 # Someone forgot to set the User-Agent before trying to scrape...
-(http.user_agent contains "curl/8") or 
-(http.user_agent contains "Go-http-client") or 
-(http.user_agent contains "Python") or 
-(http.user_agent contains "python-requests") or 
+(http.user_agent contains "curl/8") or
+(http.user_agent contains "Go-http-client") or
+(http.user_agent contains "Python") or
+(http.user_agent contains "python-requests")
 
 # Ancient Android versions...
 (http.user_agent contains "Android 4") or 
@@ -108,4 +110,5 @@
 
 # "iOS" bots, they don't even bother using current version numbers...
 (http.user_agent contains "iPhone; CPU iPhone OS 1") or 
-(http.user_agent contains "iPad; CPU OS 1")
+(http.user_agent contains "iPad; CPU OS 1") or
+(http.user_agent contains "Macintosh; Intel Mac OS X 1")
