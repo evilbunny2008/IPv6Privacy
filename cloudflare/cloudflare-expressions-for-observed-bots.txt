@@ -77,6 +77,7 @@
 (http.user_agent contains "PerplexityBot") or
 (http.user_agent contains "PetalBot") or
 (http.user_agent contains "ProRataInc") or
+(http.user_agent contains "Qwantbot") or
 (http.user_agent contains "SERankingBacklinksBot") or
 (http.user_agent contains "SeznamBot") or
 (http.user_agent contains "Sogou web spider") or
