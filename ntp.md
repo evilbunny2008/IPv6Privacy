@@ -34,7 +34,7 @@ Wants=network-online.target
 
 [Service]
 Type=oneshot
-ExecStart=/usr/sbin/ntpdate -u router.lan.aus-biz.com
+ExecStart=/usr/sbin/ntpdate -u 192.168.1.1
 
 [Install]
 WantedBy=multi-user.target" > /etc/systemd/system/ntpdate-once.service
