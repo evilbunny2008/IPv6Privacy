@@ -47,6 +47,3 @@ systemctl daemon-reload
 systemctl enable ntpdate-once
 systemctl restart ntpsec ntpdate-once
 ```
-systemctl daemon-reload ;
-systemctl enable ntpdate-once ;
-systemctl restart ntpsec ntpdate-onc
