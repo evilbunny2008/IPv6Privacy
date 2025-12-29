@@ -29,13 +29,16 @@ import sys
 
 debug = 1
 
+child = None
+
 # Load and parse commandline arguments
 parser = argparse.ArgumentParser(description="Wrapper around ssh that ensures a host/IP is provided.")
 parser.add_argument("-4", dest="ipv4", action="store_true", help="Force IPv4 connection")
 parser.add_argument("-6", dest="ipv6", action="store_true", help="Force IPv6 connection")
+parser.add_argument("-p", "--port", default=None, help="Specify the SSH port to connect to")
 parser.add_argument("-i", "--interface", default=None, help="Specify network interface")
-parser.add_argument("ssh_args", nargs=argparse.REMAINDER, help="Arguments passed to ssh (must include a hostname/IP)")
-args = parser.parse_args()
+
+args, ssh_args = parser.parse_known_args()
 
 # Check if a string is a valid routable IP
 def is_global_ip(ip_str):
@@ -178,14 +181,14 @@ def check_ip_host(ip_host):
     return "ip", None
 
 # Loop through commandline arguments to find hostnames and IPs
-def check_host_or_ip(ssh_args):
+def check_host_or_ip():
     """
     Iterate over ssh_args, find first host/IP, check if LAN or global,
     and return:
         is_lan        : none, lan, wanv4 or wanv6 depending if any hostname resolves only to LAN IPs or IPv4 IPs
     """
 
-    global args
+    global args, ssh_args
 
     is_lan = "none"
 
@@ -199,16 +202,28 @@ def check_host_or_ip(ssh_args):
         if debug > 0:
             print(f"Checking {arg}...")
 
+        # Skip options
         if arg.startswith("-"):
             continue
 
-        ip_host, dns_records = check_ip_host(arg)
+        # If argument contains user@host, extract the host part
+        if "@" in arg:
+            # split only on the FIRST '@' (some usernames contain @)
+            _, host_part = arg.split("@", 1)
+            target = host_part
+        else:
+            target = arg
+
+        if debug > 0:
+            print(f" → Using hostname/IP: {target}")
+
+        ip_host, dns_records = check_ip_host(target)
 
         if debug > 0:
             print(f"ip_host: {ip_host}...")
 
         if ip_host == "ip":
-            ret = is_global_ip(arg)
+            ret = is_global_ip(target)
             if ret == "lan":
                 is_lan = ret
                 break
@@ -240,22 +255,28 @@ def check_host_or_ip(ssh_args):
 
     return is_lan
 
-def set_winsize(child):
+def set_winsize():
     """Set window size of child pty to match the current terminal."""
+
+    global child
+
+    if child is None:
+        return
+
     rows, cols = os.popen('stty size', 'r').read().split()
     child.setwinsize(int(rows), int(cols))
 
 def sigwinch_passthrough(sig, data):
-    set_winsize(child)
+    set_winsize()
 
 def main():
-    global parser, args
+    global parser, args, ssh_args, child
 
     if args.ipv4 and args.ipv6:
         parser.error("Error: You cannot use -4 and -6 at the same time.")
 
     # Check that there is at least one argument, presumably a hostname or IP
-    if not args.ssh_args:
+    if not ssh_args:
         parser.error("Error: You must provide a hostname or IP for ssh.")
 
     # Check for a submitted network interface, otherwise get the default network interface
@@ -276,7 +297,7 @@ def main():
         parser.error("Error: {dev} isn't up.")
 
     # Send all ssh args to find the hostname or IP to connect to
-    is_lan = check_host_or_ip(args.ssh_args)
+    is_lan = check_host_or_ip()
     if is_lan == "none":
         parser.error("Error: You must provide a hostname or IP for ssh.")
 
@@ -288,7 +309,10 @@ def main():
     elif args.ipv6:
         ssh_cmd += ["-6"]
 
-    ssh_cmd += args.ssh_args
+    if args.port:
+        ssh_cmd += ["-p", args.port]
+
+    ssh_cmd += ssh_args
 
     # If connecting to a server via IPv6 that isn't on the LAN bind to the network interface and IP
     if is_lan == "wanv6":
@@ -301,7 +325,7 @@ def main():
 
     # Everything should be good to connect now
     child = pexpect.spawn("/usr/bin/ssh", args=ssh_cmd)
-    set_winsize(child)
+    set_winsize()
     signal.signal(signal.SIGWINCH, sigwinch_passthrough)
     child.interact()
 
