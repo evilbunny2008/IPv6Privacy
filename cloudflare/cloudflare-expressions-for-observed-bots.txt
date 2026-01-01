@@ -1,11 +1,160 @@
 # This is a growing list of various bots based on Cloudflare logs for blocked requests to my humble hobby weather site
 # As this list is based on logs for my site you will more than likely have to adjust/tune the below list for your website
 
-# Below is a list of ASNs owned by search engines that seemed to be scraping my site
-(ip.src.asnum in {209366 132203}) or
-
 # Stop bots getting directory listing for /.well-known/ used for among other things Let's Encrypt SSL certs
 (http.request.uri.path eq r"/.well-known/") or
+
+# Below is a list of ASNs announcing IPs outside of Australia used by bots and screenscrapers constantly hitting my website
+# 3209:		Kabel Deutschland Breitband Customer 14 (SEO crap)
+# 3258:		Virtual Machine Solutions LLC
+# 3462:		HINET Data Communication Business Group
+# 4134:		CHINANET Guangdong province network
+# 4760:		Hong Kong Telecommunications (HKT) Limited Mass In...
+# 4812:		CHINANET SHANGHAI PROVINCE NETWORK
+# 4818:		DIGIIX-AP DiGi Telecommunications Sdn. Bhd.
+# 4837:		China United Network Communications Corporation Li...
+# 7049:		Silica Networks Argentina S.A.
+# 7552:		VIETEL-AS-AP Viettel Group
+# 8193:		Uzbektelekom Joint Stock Company
+# 8376:		Jordan Telecom Group (Orange)
+# 8551:		BEZEQINT-HOSTING (IL)
+# 9009:		M247 LTD Frankfurt Infrastructure (DE)
+# 9087:		RACKDOG-EU
+# 9269:		Hong Kong Broadband Network Ltd
+# 9541:		Cyber Internet Services Pakistan
+# 10242:	ProcessBolt, Inc.
+# 12552:	GLOBALCONNECT
+# 12816:	Technische Universitaet Muenchen
+# 13238:	Yandex enterprise network
+# 14061:	Digital Ocean (VPS company)
+# 14618:	Amazon Technologies Inc. (VPS customers)
+# 14956:	RouterHosting LLC
+# 15943:	PPPOE Private Customers
+# 16276:	OVH SAS (VPS customers)
+# 16509:	Anthropic, PBC (AI company)
+# 17621:	CNCGROUP-SH China Unicom Shanghai network
+# 17924:	Smartone Mobile communications Limited (Hong Kong)
+# 18881:	TELEFONICA BRASIL S.A
+# 19318:	1337 Services GmbH (VPS company)
+# 19429:	ETB - Colombia
+# 19901:	Brightspeed (US)
+# 20473:	Vultr Sweden
+# 21299:	FTTB_Kapshagai
+# 21859:	ICG-V6-ZEN-LAX (US)
+# 23033:	Wowrack.com (US)
+# 23470:	RELIABLESITE
+# 23724:	CHINANET Beijing province network
+# 24560:	Bharti Airtel Limited
+# 24940:	HOS-25567 (DE)
+# 25159:	PJSC MegaFon (RU)
+# 26548:	FINE GROUP SERVERS SOLUTIONS LLC (US)
+# 28198:	SEMPRE TELECOMUNICACOES LTDA (BR)
+# 28548:	Cablevisión, S.A. de C.V. (MX)
+# 28573:	Claro NXT Telecomunicacoes Ltda
+# 28649:	Desktop Sigmanet Comunicacao Multimidia SA
+# 28787:	Baktelekom (AZ)
+# 29066:	VELIANET-AS velia.net Internetdienste GmbH
+# 29262:	IDEALHOSTING
+# 29066:	VELIANET-AS velia.net Internetdienste GmbH
+# 29262:	IDEALHOSTING
+# 31898:	Oracle Corporation
+# 32934:	Meta -- Facebook
+# 35819:	MOBILY-AS Etihad Etisalat Company Mobily
+# 36352:	AS-COLOCROSSING
+# 36884:	Wana Corporate (MA)
+# 36925:	2G/3G/4G Mobile Costumers (MA)
+# 39351:	31173 Services AB infrastructure in Gothenburg, SE...
+# 40021:	Contabo GmbH
+# 42708:	Internetbolaget Sweden AB
+# 44050:	PIN-NET for FTTH clients
+# 45102:	ALIBABA-CN-NET Alibaba US Technology Co., Ltd.
+# 45766:	Triangle
+# 45899:	Vietnam Posts and Telecommunications Group
+# 48090:	TECHOFF SRV LIMITED (NL)
+# 48279:	Delta-Net LLC
+# 50300:	Mojeek (GB)
+# 51167:	Contabo GmbH
+# 51396:	Pfcloud UG
+# 51747:	Internetbolaget Hosting in Sweden
+# 52263:	Telecable Economico S.A.
+# 53813:	ZSCALER-INC
+# 56046:	China Mobile Communications Corporation
+# 58461:	CHINANET-ZJ Jiaxing node network
+# 60223:	Jafar Naderlo (NL)
+# 62240:	Customer allocation HB Client 3860
+# 62713:	Level 3 Parent, LLC
+# 132203:	Tencent (Chinese Tech Firm)
+# 134768:	CHINANET-SHAANXI-CLOUD-BASE CHINANET SHAANXI province Cloud Base network
+# 135450:	PT Berkah Solusi Teknologi Informasi (ID)
+# 135478:	PT Cyberindo Aditama (ID)
+# 136907:	Huawei Hong Kong Clouds
+# 137409:	VPN Consumer Singapore, Republic of Singapore
+# 139341:	ACEVILLE PTE.LTD. (OM)
+# 140527:	CHINANET-ANHUI-WUHU-IDC China Telecom
+# 142352:	PT Prima Data Transnusantara (ID)
+# 146817:	Hubei Feixun Network Co., Ltd (CN)
+# 147303:	Visual Softs (BD)
+# 152194:	CTG Server Ltd. (HK)
+# 197540:	netcup GmbH (DE)
+# 199524:	G-Core Labs S.A. (HK)
+# 199739:	EARTHLINK-DMCC-IQ
+# 200373:	3xK Tech GmbH
+# 201838:	COMMUNITYFIBRE
+# 202306:	HOSTGLOBAL.PLUS LTD
+# 206092:	VPN Consumer New York City, United States of America
+# 206996:	ZAP-HOSTING
+# 208137:	FEO PREST SRL (NL)
+# 208258:	Access2.IT Group B.V. (NL)
+# 206092:	F.N.S. Holdings Limited (Cyprus)
+# 62713:	Level 3 Parent, LLC
+# 132203:	Tencent (Chinese Tech Firm)
+# 134768:	CHINANET-SHAANXI-CLOUD-BASE CHINANET SHAANXI province Cloud Base network
+# 135450:	PT Berkah Solusi Teknologi Informasi (ID)
+# 135478:	PT Cyberindo Aditama (ID)
+# 136907:	Huawei Hong Kong Clouds
+# 137409:	VPN Consumer Singapore, Republic of Singapore
+# 139341:	ACEVILLE PTE.LTD. (OM)
+# 140527:	CHINANET-ANHUI-WUHU-IDC China Telecom
+# 142352:	PT Prima Data Transnusantara (ID)
+# 146817:	Hubei Feixun Network Co., Ltd (CN)
+# 147303:	Visual Softs (BD)
+# 152194:	CTG Server Ltd. (HK)
+# 197540:	netcup GmbH (DE)
+# 199524:	G-Core Labs S.A. (HK)
+# 199739:	EARTHLINK-DMCC-IQ
+# 200373:	3xK Tech GmbH
+# 201838:	COMMUNITYFIBRE
+# 202306:	HOSTGLOBAL.PLUS LTD
+# 206092:	VPN Consumer New York City, United States of America
+# 206996:	ZAP-HOSTING
+# 208137:	FEO PREST SRL (NL)
+# 208258:	Access2.IT Group B.V. (NL)
+# 206092:	F.N.S. Holdings Limited (Cyprus)
+# 207847:	CLOUDBLAST
+# 209366:	SEMRush CY Ltd (Cyprus) bot
+# 209605:	UAB Host Baltic (LT)
+# 210558:	1337 Services GmbH
+# 211298:	Driftnet Ltd
+# 211301:	Unesty Company
+# 211659:	Oniks LLC (RU)
+# 211680:	INAP-AMS-1
+# 212238:	Datacamp Limited
+# 214209:	INTERNET-MAGNATE
+# 214669:	Private Customer (HK)
+# 216099:	HOSTINODE
+# 216341:	Prime LLC
+# 266841:	Cogent Communications, LLC
+# 329426:	Tabasamu Fibre Networks LTD
+# 395839:	HOSTKEY-USA
+# 396982:	Google LLC and/or Palo Alto Networks, Inc
+# 398324:	Censys, Inc.
+# 398722:	Censys, Inc.
+# 400175:	Microtronix ESolutions, LLC
+
+(ip.src.asnum in {3209 3258 3462 4134 4760 4812 4818 4837 7049 7552 8193 8376 8551 9009 9087 9269 9541 10242 12552 12816 13238 14061 14618 14956 15943 16276 16509 17621 17924 18881 19318
+19429 19901 20473 21299 21859 23033 23470 23724 24560 24940 25159 26548 28198 28548 28573 28649 28787 29066 29262 31898 32934 35819 36352 36884 36925 39351 40021 42708 44050 45102 45766
+45899 48090 48279 50300 51167 51396 51747 52263 53813 56046 58461 60223 62240 62713 132203 134768 135450 135478 136907 137409 139341 140527 142352 146817 147303 152194 197540 199524 199739
+200373 201838 202306 206092 206996 208137 208258 207847 209366 209605 210558 211298 211301 211659 211680 212238 214209 214669 216099 216341 266841 329426 395839 396982 398324 398722 400175})
 
 # Below is common paths of URLs that bots seemed to be trying to access, even though they have never existed on my website
 (http.request.uri.path wildcard r"/1.php*") or
@@ -14,7 +163,6 @@
 (http.request.uri.path wildcard r"/ahax.php*") or
 (http.request.uri.path wildcard r"/alfa.php*") or
 (http.request.uri.path wildcard r"/ALFA_DATA*") or
-(http.request.uri.path wildcard r"/api*") or
 (http.request.uri.path wildcard r"/bless.php*") or
 (http.request.uri.path wildcard r"/classwithtostring.php*") or
 (http.request.uri.path wildcard r"/component*") or
@@ -33,7 +181,6 @@
 (http.request.uri.path wildcard r"/new.php*") or 
 (http.request.uri.path wildcard r"/robots.txt*") or 
 (http.request.uri.path wildcard r"/simple.php*") or 
-(http.request.uri.path wildcard r"/vendor*") or 
 (http.request.uri.path wildcard r"/.well-known/traffic-advice*") or 
 (http.request.uri.path wildcard r"/.well-known/*.php*") or 
 (http.request.uri.path wildcard r"/wlwmanifest*") or 
@@ -48,44 +195,53 @@
 (http.request.uri.path wildcard r"/xmlrpc*") or 
 (http.request.uri.path wildcard r"/yas.php*") or 
 
-# These IPs used common user-agent strings so need to block by IP instead
-(ip.src in {4.189.112.227 5.133.192.193 5.252.55.178 8.28.7.20 8.217.16.82 8.218.198.0 8.222.232.114 13.223.5.177 20.78.176.21 20.205.13.31 27.106.98.125 27.106.108.44
-31.57.38.179 34.195.137.67 34.226.69.220 44.217.66.220 45.80.158.164 45.89.70.31 45.148.10.160 46.45.185.171 47.76.77.43 47.237.97.28 47.251.63.145 49.65.18.125 52.70.89.84
-54.210.133.241 64.227.65.193 75.119.129.236 84.247.181.144 98.93.124.89 103.11.218.6 104.155.112.165 106.75.71.166 107.172.58.36 111.119.200.166 111.119.205.243 111.119.251.92
-112.32.239.49 116.204.21.106 120.217.20.30 121.91.175.151 122.8.180.170 122.8.186.4 143.244.185.138 149.232.143.41 152.42.177.138 162.128.159.36 162.128.159.120 162.128.163.151
-162.128.163.225 162.128.163.235 162.128.163.252 171.83.17.120 175.44.42.38 175.97.131.16 176.125.228.137 183.214.237.245 185.195.232.178 185.226.196.25 185.241.208.220 188.239.9.89
-188.239.57.1 190.92.217.67 190.92.241.202 193.142.203.109 195.178.110.199 198.235.24.30 198.235.24.32 198.235.24.136 198.235.24.151 202.76.191.106 205.210.31.169 208.84.102.244
-222.137.47.214 2001:4860:7:232::fe 240d:c010:146:1::2b 240d:c010:198:1::17 240d:c010:198:1::18 240d:c010:ca:2::24 240d:c010:d5:2::12 2a01:239:422:c00::1}) or
+# Microsoft and Google IPs not used by Bingbot or Googlebot
+(ip.src in {4.128.0.0/9 5.252.54.0/23 20.33.0.0/16 20.34.0.0/15 20.36.0.0/18 20.36.64.0/19 20.36.96.0/21 20.36.104.0/22 20.36.108.0/27 20.36.108.48/28 20.36.108.64/26 20.36.108.128/25
+20.36.109.0/24 20.36.110.0/23 20.36.112.0/20 20.36.128.0/17 20.37.0.0/16 20.38.0.0/15 20.40.0.0/15 20.42.0.0/16 20.43.0.0/18 20.43.64.0/19 20.43.96.0/20 20.43.112.0/21
+20.43.120.0/28 20.43.120.32/27 20.43.120.64/26 20.43.120.128/25 20.43.121.0/24 20.43.122.0/23 20.43.124.0/22 20.43.128.0/17 20.44.0.0/14 20.48.0.0/12 20.64.0.0/13 20.72.0.0/15
+20.74.0.0/17 20.74.128.0/18 20.74.192.0/22 20.74.196.0/24 20.74.197.16/28 20.74.197.32/27 20.74.197.64/26 20.74.197.128/25 20.74.198.0/23 20.74.200.0/21 20.74.208.0/20 20.74.224.0/19
+20.75.0.0/16 20.76.0.0/15 20.78.0.0/16 20.79.0.0/18 20.79.64.0/19 20.79.96.0/21 20.79.104.0/23 20.79.106.0/24 20.79.107.0/25 20.79.107.128/26 20.79.107.192/27 20.79.107.224/28 20.79.108.0/22
+20.79.112.0/20 20.79.128.0/17 20.80.0.0/12 20.96.0.0/12 20.112.0.0/13 20.120.0.0/14 20.124.0.0/16 20.125.0.0/17 20.125.128.0/19 20.125.160.0/23 20.125.162.0/24 20.125.163.0/26 20.125.163.64/28
+20.125.163.96/27 20.125.163.128/25 20.125.164.0/22 20.125.168.0/21 20.125.176.0/20 20.125.192.0/18 20.126.0.0/15 20.128.0.0/16 20.192.0.0/10 40.74.0.0/15 40.76.0.0/16 40.77.0.0/17 40.77.128.0/21
+40.77.136.0/23 40.77.138.0/24 40.77.139.128/25 40.77.140.0/22 40.77.144.0/20 40.77.160.0/22 40.77.164.0/23 40.77.166.0/24 40.77.168.0/21 40.77.176.0/24 40.77.180.0/22 40.77.184.0/22 40.77.192.0/21
+40.77.200.0/23 40.77.203.0/24 40.77.204.0/22 40.77.208.0/20 40.77.224.0/19 40.78.0.0/16 40.79.0.0/17 40.79.128.0/23 40.79.130.0/24 40.79.131.0/25 40.79.131.128/26 40.79.131.192/28 40.79.131.224/27
+40.79.132.0/22 40.79.136.0/21 40.79.144.0/20 40.79.160.0/20 40.79.176.0/21 40.79.184.0/23 40.79.186.0/25 40.79.186.128/27 40.79.186.160/28 40.79.186.192/26 40.79.187.0/24 40.79.188.0/22
+40.79.192.0/18 40.80.0.0/12 40.96.0.0/12 40.112.0.0/13 40.120.0.0/14 40.124.0.0/16 40.125.0.0/17 74.224.0.0/14 158.158.0.0/16 2001:4860::/34 2001:4860:4000::/37 2001:4860:4800::/48 2001:4860:4801::/63
+2001:4860:4801:3::/64 2001:4860:4801:4::/62 2001:4860:4801:8::/62 2001:4860:4801:d::/64 2001:4860:4801:e::/64 2001:4860:4801:11::/64 2001:4860:4801:43::/64 2001:4860:4801:4f::/64
+2001:4860:4801:5a::/63 2001:4860:4801:5c::/62 2001:4860:4801:7e::/63 2001:4860:4801:89::/64 2001:4860:4801:8a::/63 2001:4860:4801:8c::/62 2001:4860:4801:98::/61 2001:4860:4801:af::/64
+2001:4860:4801:b6::/63 2001:4860:4801:b8::/61 2001:4860:4801:c0::/58 2001:4860:4801:100::/56 2001:4860:4801:200::/55 2001:4860:4801:400::/54 2001:4860:4801:800::/53 2001:4860:4801:1000::/52
+2001:4860:4801:2000::/51 2001:4860:4801:4000::/50 2001:4860:4801:8000::/49 2001:4860:4802::/47 2001:4860:4804::/46 2001:4860:4808::/45 2001:4860:4810::/44 2001:4860:4820::/43 2001:4860:4840::/42
+2001:4860:4880::/41 2001:4860:4900::/40 2001:4860:4a00::/39 2001:4860:4c00::/38 2001:4860:5000::/36 2001:4860:6000::/35 2001:4860:8000::/33 240d:c000::/24 2a01:238::/29}) or
 
 # Common bot user-agents, who knew there were so many, list expanded from Cloudflare's list of known AI bots, Bingbot and Googlebot excluded so my site will show in their search engines
-(http.user_agent contains "AhrefsBot") or
-(http.user_agent contains "ALittle Client") or
-(http.user_agent contains "AliyunSecBot") or
 (http.user_agent contains "Applebot") or
-(http.user_agent contains "AwarioBot") or
 (http.user_agent contains "ChatGPT-User") or
-(http.user_agent contains "ClaudeBot") or
 (http.user_agent contains "CMS-Checker") or
-(http.user_agent contains "l9scan") or
+(http.user_agent contains "Googlebot-Image") or
+(http.user_agent contains "meta-externalfetcher") or
+(http.user_agent contains "meta-webindexer") or
+(http.user_agent contains "UGAResearchAgent") or
+(http.user_agent contains "ClaudeBot") or
+(http.user_agent contains "Claude-SearchBot") or
+(http.user_agent contains "DotBot") or
 (http.user_agent contains "MercuryLeads") or
 (http.user_agent contains "meta-externalfetcher") or
 (http.user_agent contains "meta-webindexer") or
 (http.user_agent contains "MistralAI-User") or
 (http.user_agent contains "MJ12bot") or
 (http.user_agent contains "OAI-SearchBot") or
-(http.user_agent contains "Perplexity-User") or
 (http.user_agent contains "PerplexityBot") or
+(http.user_agent contains "Perplexity-User") or
 (http.user_agent contains "PetalBot") or
 (http.user_agent contains "ProRataInc") or
-(http.user_agent contains "Qwantbot") or
 (http.user_agent contains "SERankingBacklinksBot") or
 (http.user_agent contains "SeznamBot") or
 (http.user_agent contains "Sogou web spider") or
 (http.user_agent contains "TikTok") or
 (http.user_agent contains "Turnitin") or
 (http.user_agent contains "UGAResearchAgent") or
-(http.user_agent contains "WhatCMS") or
-(http.user_agent contains "YandexBot")
+(http.user_agent contains "WhatCMS") or 
+(http.user_agent contains "YandexBot") or
 
 # Someone forgot to set the User-Agent before trying to scrape...
 (http.user_agent contains "curl/8") or
