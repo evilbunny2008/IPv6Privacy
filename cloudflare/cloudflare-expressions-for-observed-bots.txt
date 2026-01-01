@@ -2,7 +2,7 @@
 # As this list is based on logs for my site you will more than likely have to adjust/tune the below list for your website
 
 # Stop bots getting directory listing for /.well-known/ used for among other things Let's Encrypt SSL certificate requests
-(http.request.uri.path eq r"/.well-known/") or
+(http.request.uri.path in {"/.well-known" "/.well-known/"}) or
 
 # Below is a list of ASNs announcing IPs outside of Australia used by bots and screenscrapers constantly hitting my website
 # 3209:		Kabel Deutschland Breitband Customer 14 (SEO crap)
