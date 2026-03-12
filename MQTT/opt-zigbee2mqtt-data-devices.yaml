@@ -1,4 +1,4 @@
 '0xHEX_ADDRESS':
-  friendly_name: '0xHEX_ADDRESS'
+  friendly_name: 'CanBeAnythingButDontUseSpaces'
   description: Sensor 1
   temperature_precision: 1
