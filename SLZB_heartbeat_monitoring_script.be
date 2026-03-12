@@ -43,7 +43,7 @@ while true
 
     # send heartbeat
     if now - last_heartbeat >= HEARTBEAT_INTERVAL
-        var msg = {"status": "online", "uptime_seconds": uptime_str(now)}
+        var msg = {"status": "online", "uptime": uptime_str(now)}
         MQTT.publish("heartbeat", json.dump(msg))
         last_heartbeat = now
         SLZB.log("Heartbeat sent")
