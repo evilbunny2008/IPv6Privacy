@@ -1,0 +1,4 @@
+'0xHEX_ADDRESS':
+  friendly_name: '0xHEX_ADDRESS'
+  description: Sensor 1
+  temperature_precision: 1
