@@ -1,4 +1,7 @@
 #META {"start":1}
+
+# Heartbeat monitoring script that will reboot SLZB devices if no updates detected in MQTT for 30 minutes
+
 import json
 import MQTT
 
@@ -19,7 +22,7 @@ MQTT.subscribe("zigbee2mqtt/#")
 
 def on_message(topic, data)
     # update last time we saw Z2M traffic
-    last_z2m_seen = SLZB.millis()
+    last_z2m_seen = SLZB.millis() / 1000
 end
 
 MQTT.on_message(on_message)
