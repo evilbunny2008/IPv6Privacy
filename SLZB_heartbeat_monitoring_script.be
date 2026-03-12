@@ -4,11 +4,13 @@
 
 import json
 import MQTT
+import string
 
 var HEARTBEAT_INTERVAL = 60                      # 60 seconds in ms
 var last_heartbeat = 0
 var last_z2m_seen = 0
-var RESTART_TIMEOUT = 30 * HEARTBEAT_INTERVAL    # 30 mins no Z2M = restart
+var RESTART_TIMEOUT = 30 * HEARTBEAT_INTERVAL    # 30 mins no Z2M = restart\
+var LOOP_WAIT = 10
 
 var logmsg = "Attempting to connect to MQTT server"
 SLZB.log(logmsg)
@@ -25,6 +27,14 @@ def on_message(topic, data)
     last_z2m_seen = SLZB.millis() / 1000
 end
 
+def uptime_str(seconds)
+    var days = int(seconds / 86400)
+    var hours = int((seconds % 86400) / 3600)
+    var minutes = int((seconds % 3600) / 60)
+    var secs = int(seconds % 60)
+    return string.format("%dd %02d:%02d:%02d", days, hours, minutes, secs)
+end
+
 MQTT.on_message(on_message)
 
 while true
@@ -33,7 +43,7 @@ while true
 
     # send heartbeat
     if now - last_heartbeat >= HEARTBEAT_INTERVAL
-        var msg = {"status": "online"}
+        var msg = {"status": "online", "uptime_seconds": uptime_str(now)}
         MQTT.publish("heartbeat", json.dump(msg))
         last_heartbeat = now
         SLZB.log("Heartbeat sent")
@@ -41,7 +51,7 @@ while true
 
     # check if Z2M has gone silent
     if last_z2m_seen > 0 && now - last_z2m_seen > RESTART_TIMEOUT
-        var logmsg = "No Z2M traffic for 30 mins, rebooting..."
+        var logmsg = "No Z2M traffic for 30 minutes, rebooting..."
         SLZB.log(logmsg)
         var msg = {"alert": logmsg, "action": "rebooting", "timeout_minutes": 30}
         MQTT.publish("alert", json.dump(msg))
@@ -50,5 +60,5 @@ while true
         SLZB.reboot()
     end
 
-    SLZB.delay(10000) # Wait 10 seconds and check again
+    SLZB.delay(LOOP_WAIT * 1000)
 end
