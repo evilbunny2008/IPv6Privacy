@@ -1,6 +1,6 @@
 #META {"start":1}
 
-# Heartbeat monitoring script that will reboot SLZB devices if no updates detected in MQTT for 30 minutes
+# Heartbeat monitoring berry script that will reboot SLZB devices if no updates detected in MQTT for 30 minutes
 
 import json
 import MQTT
