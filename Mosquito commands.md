@@ -1,4 +1,4 @@
-## How to get a list of current topics
+## How to get a list of current topics from a mosquito server
 
 ```
 mosquitto_sub -v -u mqtt_username -P mqtt_password -t "#" -W 1 | while read topic payload; do echo "Topic: $topic"; done
