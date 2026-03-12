@@ -1,5 +1,8 @@
 #!/usr/bin/python3
 
+# This ssh wrapper script is useful for those using IPv6 with Privacy extensions enabled with short time to live settings
+# so the real ssh binary is told to use the stable IP address instead.
+
 # Add the following lines to /etc/profile.d/ssh.sh to set this python script to be the default when typing ssh on the commandline.
 # ssh() {
 #  /usr/bin/ssh.py "$@"
