@@ -1,12 +1,12 @@
 # Useful mosquito commands
 
-# Create a password file and add a user
+## Create a password file and add a user
 
 ```
 mosquitto_passwd -c /etc/mosquitto/passwd username
 ```
 
-# Add a user to an existing password file
+## Add a user to an existing password file
 
 ```
 mosquitto_passwd /etc/mosquitto/passwd username
