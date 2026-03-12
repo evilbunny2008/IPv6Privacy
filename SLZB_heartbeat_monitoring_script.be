@@ -32,7 +32,7 @@ def uptime_str(seconds)
     var hours = int((seconds % 86400) / 3600)
     var minutes = int((seconds % 3600) / 60)
     var secs = int(seconds % 60)
-    return string.format("%dd %02d:%02d:%02d", days, hours, minutes, secs)
+    return string.format("%dd %dh %dm %ds", days, hours, minutes, secs)
 end
 
 MQTT.on_message(on_message)
