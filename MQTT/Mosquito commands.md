@@ -12,6 +12,12 @@ mosquitto_passwd -c /etc/mosquitto/passwd username
 mosquitto_passwd /etc/mosquitto/passwd username
 ```
 
+## Delete a user
+
+```
+mosquitto_passwd -D username
+```
+
 ## How to get a list of current topics from a mosquito server
 
 ```
