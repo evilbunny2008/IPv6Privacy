@@ -1,2 +1,3 @@
-# IPv6Privacy
-Collection of tidbits and code to make life easier for users while making life harder for trackers
+# Useful Scripts And Other Tidbits
+
+This repo has a growing collection of scripts and other tidbits to make life easier for Debian users
