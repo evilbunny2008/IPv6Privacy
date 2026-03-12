@@ -1,0 +1,30 @@
+# Simple config for Ethernet/WiFi Zigbee coordinators
+
+version: 5
+availability:
+  enabled: true
+  active:
+    timeout: 60
+  passive:
+    timeout: 60
+devices: devices.yaml
+frontend:
+  enabled: true
+  port: 8080
+homeassistant:
+  enabled: false
+mqtt:
+  base_topic: zigbee2mqtt
+  server: mqtt://localhost
+  user: username
+  password: password
+  keepalive: 60
+  reconnect_period: 10
+serial:
+  port: tcp://<IP for Zigbee Coordinator>:6638
+  adapter: zstack
+advanced:
+  network_key: GENERATE
+  pan_id: GENERATE
+  ext_pan_id: GENERATE
+  last_seen: ISO_8601
