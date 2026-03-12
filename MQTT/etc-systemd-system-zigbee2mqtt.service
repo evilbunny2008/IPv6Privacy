@@ -1,0 +1,18 @@
+[Unit]
+Description=zigbee2mqtt
+After=network.target
+
+[Service]
+Environment=NODE_ENV=production
+Type=notify
+ExecStart=/usr/bin/node index.js
+WorkingDirectory=/opt/zigbee2mqtt
+StandardOutput=inherit
+StandardError=inherit
+WatchdogSec=10s
+Restart=always
+RestartSec=10s
+User=zigbee2mqtt
+
+[Install]
+WantedBy=multi-user.target
