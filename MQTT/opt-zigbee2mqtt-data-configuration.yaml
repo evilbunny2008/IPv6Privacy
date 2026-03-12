@@ -11,6 +11,9 @@ devices: devices.yaml
 frontend:
   enabled: true
   port: 8080
+  ssl_cert: /opt/zigbee2mqtt/data/server.crt
+  ssl_key: /opt/zigbee2mqtt/data/server.key
+  url: https://zigbee2mqtt.local:8080
 homeassistant:
   enabled: false
 mqtt:
