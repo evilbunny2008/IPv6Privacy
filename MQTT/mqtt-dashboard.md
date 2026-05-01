@@ -150,9 +150,9 @@ Set the 'Send Topic' to 'zigbee2mqtt/GardenTap/set'
 
 If your smart water timer has more than one outlet you may need to use 'state_l1' instead of 'state' below, and 'state_l2' for the 2nd outlet.
 
-Zigbee2MQTT expects commands to be JSON formatted, so set 'Prefix' to '{"state": "'. Then set 'Suffix' to be '"}'. This is so when MQTT Dashboard transmits an 'ON' command the message body is {"state": "ON"}.
+Zigbee2MQTT expects commands to be JSON formatted, so set 'Prefix' to '{"state": "'. Then set 'Suffix' to be '", "countdown": 1440}'. This is so when MQTT Dashboard transmits an 'ON' command the message body is {"state": "ON", "countdown": 1440}.
 
-Note: For JSON to be valid you must only use double quotes for the prefix and suffix.
+Note: For JSON to be valid you must only use double quotes for the prefix and suffix. The countdown field is used in the timers to automatically shut off after that amount of minutes. For multi-outlet devices they may be numbered countdown_l1, countdown_l2 etc.
 
 You can leave 'On' set to 'ON' and 'Off' set to 'OFF'.
 
