@@ -39,7 +39,7 @@ const fzLocal = {
 };
 
 const definition = {
-    fingerprint: [{modelID: 'TS0049', manufacturerName: '_TZ3000_XXXXXXXXX'}],
+    fingerprint: [{modelID: 'TS0049', manufacturerName: '_TZ3000_cjfmu5he'}],
     model: "ZWV-YC2",
     vendor: "Tuya",
     description: 'Smart water valve with persistent timer',
