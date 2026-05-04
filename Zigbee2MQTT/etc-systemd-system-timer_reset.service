@@ -1,0 +1,16 @@
+[Unit]
+Description=Smart water timer physical button timer reset script
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/src/UsefulScriptsAndOtherTidbits/Zigbee2MQTT/timer_reset.py -v
+WorkingDirectory=/usr/src/UsefulScriptsAndOtherTidbits/Zigbee2MQTT
+StandardOutput=inherit
+StandardError=inherit
+Restart=on-failure
+RestartSec=5s
+User=timer_reset
+
+[Install]
+WantedBy=multi-user.target
