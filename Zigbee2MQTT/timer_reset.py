@@ -91,6 +91,8 @@ def on_message(client, userdata, msg):
         if DEBUG >= 1:
             print("Set countdown_l2 to 1440")
 
+print("Starting timer_reset.py...")
+
 parser = argparse.ArgumentParser(description="Simple MQTT client to listen for Smart Water Valves when they have the physical button pushed to turn the 'tap' off and on to get round the 10 minute default limit")
 parser.add_argument("-c", "--config", type = str, default="/etc/timer_reset.conf", help="Path to config file, /etc/timer_reset.conf is the default")
 parser.add_argument('-v', '--verbose', action='count', default=0, help='Verbosity level (use -v, -vv, -vvv etc)')
