@@ -73,7 +73,7 @@ def on_message(client, userdata, msg):
         client.publish(f"{msg.topic}/set", '{"state": "ON", "countdown": 1440}')
 
         if DEBUG >= 1:
-            print("Set countdown to 1440")
+            print(f"Set {msg.topic} countdown to 1440")
 
     if "state_l1" in payload and payload.get("state_l1") == "ON" and payload.get("countdown_l1", 1440) <= 10 and not SENT_COUNTDOWN_L1:
         SENT_COUNTDOWN_L1 = True
@@ -81,7 +81,7 @@ def on_message(client, userdata, msg):
         client.publish(f"{msg.topic}/set", '{"state_l1": "ON", "countdown_l1": 1440}')
 
         if DEBUG >= 1:
-            print("Set countdown_l1 to 1440")
+            print(f"Set {msg.topic} countdown_l1 to 1440")
 
     if "state_l2" in payload and payload.get("state_l2") == "ON" and payload.get("countdown_l2", 1440) <= 10 and not SENT_COUNTDOWN_L2:
         SENT_COUNTDOWN_L2 = True
@@ -89,7 +89,7 @@ def on_message(client, userdata, msg):
         client.publish(f"{msg.topic}/set", '{"state_l2": "ON", "countdown_l2": 1440}')
 
         if DEBUG >= 1:
-            print("Set countdown_l2 to 1440")
+            print(f"Set {msg.topic} countdown_l2 to 1440")
 
 print("Starting timer_reset.py...")
 
