@@ -1,3 +1,4 @@
+
 # This is a growing list of various bots based on Cloudflare logs for requests to my humble hobby weather site which seems to
 # be a good honey pot for finding them, I had to split the ASN list up as it grew to be over the 4096B limit Cloudflare sets in
 # their portal
@@ -13,8 +14,8 @@
 
 # Allowed paths and IPs and some search engine crawlers
 #
-(http.user_agent contains "Googlebot/" and cf.verified_bot_category eq "Search Engine Crawler") or
-(http.user_agent contains "bingbot/" and cf.verified_bot_category eq "Search Engine Crawler") or
+(http.user_agent contains " Googlebot/" and cf.verified_bot_category eq "Search Engine Crawler") or
+(http.user_agent contains " bingbot/" and cf.verified_bot_category eq "Search Engine Crawler") or
 (http.user_agent contains "DuckDuckBot/" and cf.verified_bot_category eq "Search Engine Crawler") or
 (http.user_agent contains "Bravebot/" and cf.verified_bot_category eq "Search Engine Crawler")
 
@@ -23,17 +24,18 @@
 (http.user_agent contains "admantx") or (http.user_agent contains "AhrefsBot") or (http.user_agent contains "ALittle Client") or
 (http.user_agent contains "AliyunSecBot") or (http.user_agent contains "AwarioBot") or (http.user_agent contains "BitSightBot") or
 (http.user_agent contains "CensysInspect") or (http.user_agent contains "ChatGPT-User") or (http.user_agent contains "Claude-SearchBot") or
-(http.user_agent contains "ClaudeBot") or (http.user_agent contains "CMS-Checker") or (http.user_agent contains "DotBot") or
-(http.user_agent contains "facebookexternalhit") or (http.user_agent contains "httpx - Open-source project") or
-(http.user_agent contains "IAB-Tech-Lab") or (http.user_agent contains "InternetMeasurement") or (http.user_agent contains "l9scan") or
-(http.user_agent contains "MercuryLeads") or (http.user_agent contains "meta-externalfetcher") or (http.user_agent contains "meta-webindexer") or
-(http.user_agent contains "MistralAI-User") or (http.user_agent contains "MJ12bot") or (http.user_agent contains "MojeekBot") or
-(http.user_agent contains "OAI-SearchBot") or (http.user_agent contains "OI-Crawler/Nutch") or (http.user_agent contains "Perplexity-User") or
+(http.user_agent contains "ClaudeBot") or (http.user_agent contains "CMS-Checker") or (http.user_agent contains " DomainMetadataCollector/") or
+(http.user_agent contains "DotBot") or (http.user_agent contains "facebookexternalhit") or (http.user_agent contains "fluid") or
+(http.user_agent contains "httpx - Open-source project") or (http.user_agent contains "IAB-Tech-Lab") or
+(http.user_agent contains "InternetMeasurement") or (http.user_agent contains "l9scan") or (http.user_agent contains "MercuryLeads") or
+(http.user_agent contains "meta-externalfetcher") or (http.user_agent contains "meta-webindexer") or (http.user_agent contains "MistralAI-User") or
+(http.user_agent contains "MJ12bot") or (http.user_agent contains "MojeekBot") or (http.user_agent contains " NetcraftSurveyAgent/") or
+(http.user_agent contains "OAI-SearchBot") or (http.user_agent contains "OI-Crawler/") or (http.user_agent contains "Perplexity-User") or
 (http.user_agent contains "PerplexityBot") or (http.user_agent contains "PetalBot") or (http.user_agent contains "ProRataInc") or
 (http.user_agent contains "PubMatic Crawler Bot") or (http.user_agent contains "ResearchBot") or (http.user_agent contains "Scrapy") or
 (http.user_agent contains "SemrushBot") or (http.user_agent contains "SERankingBacklinksBot") or (http.user_agent contains "SeznamBot") or
 (http.user_agent contains "Sogou web spider") or (http.user_agent contains "TikTok") or (http.user_agent contains "Turnitin") or
-(http.user_agent contains "WhatCMS") or (http.user_agent contains "wpbot") or (http.user_agent contains "YandexBot")
+(http.user_agent contains "WhatCMS") or (http.user_agent contains "wpbot") or (http.user_agent contains "Yandex")
 
 # Obviously fake user agent strings
 #
@@ -41,11 +43,6 @@
 (http.user_agent contains "Android 8") or (http.user_agent contains "Android 9") or (http.user_agent contains "Windows NT 4") or
 (http.user_agent contains "Windows NT 5") or (http.user_agent contains "Windows NT 6") or (http.user_agent contains "Windows NT 7") or
 (http.user_agent contains "Windows NT 8") or (http.user_agent contains "Windows NT 9")
-
-# Obvious screen scrapers using default user agent strings in various libraries and languages
-#
-(http.user_agent contains "curl/7") or (http.user_agent contains "curl/8") or (http.user_agent contains "Go-http-client") or
-(http.user_agent contains "Java-http-client") or (http.user_agent contains "python") or (http.user_agent contains "Python")
 
 # Paths that are obviously bots searching for exploits
 #
@@ -58,14 +55,13 @@
 (starts_with(http.request.uri.path, "/file.php")) or (starts_with(http.request.uri.path, "/gg")) or (starts_with(http.request.uri.path, "/.git")) or
 (starts_with(http.request.uri.path, "/goods.php")) or (starts_with(http.request.uri.path, "/function")) or
 (starts_with(http.request.uri.path, "/index/")) or (starts_with(http.request.uri.path, "/info")) or
-(starts_with(http.request.uri.path, "/inputs.php")) or (starts_with(http.request.uri.path, "/install")) or
-(starts_with(http.request.uri.path, "/ioxi-o")) or (starts_with(http.request.uri.path, "/mah.php")) or
-(starts_with(http.request.uri.path, "/manager.php")) or (starts_with(http.request.uri.path, "/module")) or
-(starts_with(http.request.uri.path, "/new.php")) or (starts_with(http.request.uri.path, "/NewFile.php")) or
-(starts_with(http.request.uri.path, "/radio")) or (starts_with(http.request.uri.path, "/simple.php")) or
-(starts_with(http.request.uri.path, "/system.php")) or (starts_with(http.request.uri.path, "/test.php")) or
-(starts_with(http.request.uri.path, "/.well-known")) or (starts_with(http.request.uri.path, "/wp")) or
-(starts_with(http.request.uri.path, "/wsa.php")) or (starts_with(http.request.uri.path, "/uploads")) or
+(starts_with(http.request.uri.path, "/inputs.php")) or (starts_with(http.request.uri.path, "/ioxi-o")) or
+(starts_with(http.request.uri.path, "/mah.php")) or (starts_with(http.request.uri.path, "/manager.php")) or
+(starts_with(http.request.uri.path, "/module")) or (starts_with(http.request.uri.path, "/new.php")) or
+(starts_with(http.request.uri.path, "/NewFile.php")) or (starts_with(http.request.uri.path, "/radio")) or
+(starts_with(http.request.uri.path, "/simple.php")) or (starts_with(http.request.uri.path, "/system.php")) or
+(starts_with(http.request.uri.path, "/test.php")) or (starts_with(http.request.uri.path, "/.well-known")) or
+(starts_with(http.request.uri.path, "/wp")) or (starts_with(http.request.uri.path, "/wsa.php")) or (starts_with(http.request.uri.path, "/uploads")) or
 (starts_with(http.request.uri.path, "/update")) or (starts_with(http.request.uri.path, "/user.php")) or
 (starts_with(http.request.uri.path, "/x.php")) or (starts_with(http.request.uri.path, "/xleet.php")) or
 (starts_with(http.request.uri.path, "/xmlrpc")) or (starts_with(http.request.uri.path, "/xmrlpc")) or
@@ -110,6 +106,7 @@
 # 10704: ML Telecom|.br
 # 10753: Level 3 Parent LLC|.us
 # 11320: LightEdge Solutions|.us
+# 11798: Ace Data Centers, Inc.|.us
 # 11878: Tzulo Inc|.us,.int
 # 12552: GlobalConnect AB|.se,.int
 # 12555: Data-center IMAQLIQ Ltd|.ru
@@ -133,6 +130,7 @@
 # 16417: Cisco Systems Ironport Division|.us,.int
 # 16509: Amazon.com Inc|.us,.int
 # 16628: DedFiberCo|.us,.de
+# 17252: Colocation America Corporation|.us,.int
 # 17451: BIZNET NETWORKS|.id
 # 17762: Tata Teleservices Maharashtra Ltd|.in
 # 18229: CtrlS|.in
@@ -143,7 +141,7 @@
 # 20011: Dimension Data|.za
 # 20207: Gigared S.A.|.ar
 # 20278: Nexeon Technologies Inc|.us
-# 20473: Vultr Sweden|.se
+# 20473: The Constant Company, LLC|.us,.int
 # 20485: Joint Stock Company TransTeleCom|.ru
 # 20853: eTOP|.pl
 # 20860: IOMART CLOUD SERVICES LIMITED|.int
@@ -167,14 +165,14 @@
 # 24432: TM International Bangladesh Ltd.|.bd
 # 24806: INTERNET CZ, a.s.|.cz
 # 24940: Hetzner Online GmbH|.int -- START HERE
-# 24961: MYLOC-AS IP Backbone of WIIT AG|.de
+# 24961: WIIT AG|.de
 # 25019: SAUDINETSTC-AS|.sa
 # 25159: PJSC MegaFon|.ru
 # 25288: DEMENIN B.V.|.nl,.int
 # 25737: Jone Broadband LLC|.us
 # 26210: AXS Bolivia S. A.|.bo
 # 26496: GoDaddy.com LLC|.us,.int
-# 26548: PUREVOLTAGE-INC/FINE GROUP SERVERS SOLUTIONS LLC|.us
+# 26548: PureVoltage Hosting Inc|.us,.int
 # 26599: TELEFÔNICA BRASIL S.A|.br
 # 26658: HT|.us,.int
 # 26667: RUBICONPROJECT|.us
@@ -219,9 +217,9 @@
 # 30900: WEBWORLD-AS ta Web World Ireland|.ie
 # 31034: ARUBA-ASN|.it
 # 31224: MF-UGSM-AS|.ru
-# 31898: Oracle Corporation|.us,.sg
+# 31898: Oracle Corporation|.us,.int
 # 32097: WII|.us
-# 32613: IWEB-AS|.ca
+# 32613: Leaseweb Canada Inc|.ca,.int
 # 32934: Meta/Facebook|.us
 # 33368: Visual Trading Systems LLC|.us
 # 33576: DIG001|.jm
@@ -239,14 +237,13 @@
 # 35830: Fast Servers Pty Ltd|.za,.int
 # 35908: Krypt Technologies|.us,.int
 # 36007: Kamatera Inc|.us
-# 36183: AKAMAI-AS|.us
-# 36352: AS-COLOCROSSING|.us
+# 36183: Akamai Technologies, Inc.|.us,.int
+# 36352: HostPapa|.us,.int
 # 36680: NETIFACELLC - Netiface LLC|.de
 # 36692: CISCO-UMBRELLA|.us
 # 36866: JTL|.ke
 # 36873: VNL1-AS|.ng
 # 36884: Wana Corporate|.ma
-# 36903: MT-MPLS|.ma
 # 36907: TVCaboAngola|.ao
 # 36924: GVA-Canalbox|.rw
 # 36925: ASMedi/2G/3G/4G Mobile Costumers|.ma
@@ -259,10 +256,11 @@
 # 37461: ORANGE|.gn
 # 37616: Mobile Network
 # 37705: TOPNET|.tn
-# 38235: MEKONGNET-ADC-AS-AP ANGKOR DATA COMMUNICATION|.kh
-# 38264: WATEEN-IMS-PK-AS-AP National WiMAXIMS environment|.pk
-# 38466: UMOBILE
-# 38623: VIETTELCAMBODIA-AS-AP ISPIXP IN CAMBODIA WITH THE BEST VERVICE IN THERE.|.kh
+# 38235: ANGKOR DATA COMMUNICATION|.kh
+# 38264: National WiMAXIMS environment|.pk
+# 38466: U Mobile Sdn Bhd|.my
+# 38623: ISP/IXP IN CAMBODIA WITH THE BEST VERVICE IN THERE.|.kh
+# 38880: Micron21 Datacentre Pty Ltd
 # 39216: ALSARD|.iq
 # 39351: ESAB-AS/31173 Services AB infrastructure in Gothenburg|.de
 # 39486: IP Resources Trading SRL
@@ -308,8 +306,7 @@
 # 45609: BHARTI-MOBILITY-AS-AP Bharti Airtel Ltd. AS for GPRS Service|.in
 # 45671: AS45671-NET-AU Wholesale Services Provider|.au
 # 45766: Triangle
-# 45899: Vietnam Posts and Telecommunications Group|.vn
-# 46261: QUICKPACKET|.us
+# 46261: QuickPacket, LLC|.us
 # 46475: Limestone Networks Inc|.us
 # 46562: Performive LLC|.us,.int
 # 46606: Unified Layer|.us
@@ -320,11 +317,10 @@
 # 47794: Etihad Atheeb Telecom Company
 # 47890: UNMANAGED-DEDICATED-SERVERS
 # 48031: XSERVERCLOUD|.bg
-# 48090: TECHOFF SRV LIMITED/DMZHOST|.nl
+# 48090: TECHOFF SRV LIMITED|.ad
 # 48230: MONOLITH-AS|.ua
 # 48279: Delta-Net LLC
 # 48282: VDSINA-AS|.ru
-# 48492: I.Q Online for Internet Services and Communications LLC
 # 48753: AVA HOST SRL|.md
 # 48832: ZAIN|.jo
 # 48955: Internet Resources Management SRL|.ro
@@ -342,7 +338,7 @@
 # 51247: Serverio technologijos MB|.lt
 # 51290: HOSTEAM-AS|.nl
 # 51332: M247-ENTERPRISE|.uk
-# 51396: Pfcloud UG|.nl
+# 51396: Pfcloud UG|.nl,.int
 # 51430: ALTUS|.nl
 # 51747: INTERNETBOLAGET/Internetbolaget Hosting in Sweden|.se
 # 51765: Oy Creanova Hosting Solutions Ltd|.fi,.int
@@ -352,7 +348,7 @@
 # 52263: Telecable Economico S.A.
 # 52300: Internet Local|.ar
 # 52393: Corporación Dana S.A.|.ar
-# 52485: networksdelmanana.com|.us
+# 52485: networksdelmanana.com|.hn
 # 53222: Seanet Telecom Ltda|.br
 # 53366: TILLLMAN-FIBER-CO|.us
 # 53514: UHQ|.fr
@@ -363,7 +359,9 @@
 # 54103: MOD Mission Critical LLC|.us,.int
 # 54113: Fastly Inc|.us,.int
 # 54290: Hostwinds LLC|.us,.int
+# 55256: Netskope Inc|.us,.int
 # 55286: SERVER-MANIA - B2 Net Solutions Inc|.us
+# 55736: Dataknox Pty Limited|.au
 # 55803: HOSTOPIA-AU Hostopia Australia Web Pty Ltd|.au
 # 55836: Reliance Jio Infocomm Limited|.in
 # 56309: SIAMDATA-TH Siamdata Communication Co.,Ltd.|.th
@@ -372,6 +370,7 @@
 # 56971: Cloud|.fi
 # 57169: EDIS GmbH|.at,.int
 # 57523: CHANGWAY-AS
+# 57682: TOV HOST VDS|.uk
 # 57794: ELLINIKA DIKTIA KALODION MEPE|.gr
 # 58061: Scalaxy B.V.|.lv
 # 58065: Orion Network Limited|.uk,.int
@@ -382,14 +381,15 @@
 # 58689: ICCNET-DHK-BD ICC Communication|.bd
 # 59257: CMPAKLIMITED-AS-AP CMPak Limited|.pk
 # 59588: ZAINAS|.iq
+# 59651: AS QualityNetwork|.il
 # 59668: ATURON|.uz
 # 59711: HZ-EU-AS|.fr
 # 59891: FSIT AG|.ch
 # 60068: DataCamp s.r.o./CDN77|.za
 # 60223: NETIFACE-AS Netiface/Jafar Naderlo|.de,.nl
-# 60404: LITESERVER|.nl
-# 60729: TORSERVERS-NET
-# 60781: LEASEWEB-NL-AMS-01 Netherlands|.nl
+# 60404: The Infrastructure Group B.V.|.nl
+# 60729: Stiftung Erneuerbare Freiheit|.de,.us
+# 60781: LeaseWeb Netherlands B.V.|.nl
 # 61125: SABOTAGE|.nl
 # 61272: IST-AS|.lt
 # 61317: Hivelocity LLC|.us,.int
@@ -408,6 +408,7 @@
 # 63023: AS-GLOBALTELEHOST|.us
 # 63473: HOSTHATCH|.us
 # 63949: Linode/AKAMAI-LINODE-AP Akamai Connected Cloud|.in
+# 64160: NimblyNet Limited|.bz,.int
 # 64267: Blazing SEO LLC
 # 64286: LOGICWEB|.us
 # 64445: NetJoin|.it
@@ -448,9 +449,10 @@
 # 136429: BASNETWORK-AS-AP BAS Network|.bd
 # 136525: WANCOMPVTLTD-AS-AP Wancom Pvt Ltd.|.pk
 # 136557: HOST-AS-AP Host Universal Pty Ltd|.nz
-# 136787: PACKETHUBSA-AS-AP PacketHub S.A.|.ca
-# 137409: GSLNETWORKS-AS-AP GSL Networks Pty LTD|.sg
+# 136787: PacketHub S.A.|.pa,.int
+# 137409: GSL Networks Pty Ltd|.au,.int
 # 137967: DIGICON-ISP-AS Digicon Telecommunication Ltd
+# 138115: PT Deneva|.id,.int
 # 138915: KAOPU-HK Kaopu Cloud HK Limited|.tr
 # 139341: ACEVILLE PTE.LTD.|.om
 # 139786: Rainbow Network|.bd
@@ -482,13 +484,13 @@
 # 198488: NBU-AS|.ua
 # 198589: JT-AS|.iq
 # 198953: Proton66|.ru
+# 199064: QWANT SAS|.fr
 # 199284: ENCOLINE|.de
 # 199404: WHG Hosting Services Ltd|.in
 # 199654: OXIDE-GROUP-LIMITED Oxide Group Limited|.nl
-# 199739: EARTHLINK-DMCC-IQ|.iq
-# 199785: CHSN-AS|.ru
-# 200019: ALEXHOST
-# 200107: KL-EXT|.ru
+# 199785: Cloud Hosting Solutions, Limited|.de
+# 200019: ALEXHOST SRL|.md,.int
+# 200107: Kaspersky Lab Switzerland GmbH|.ch,.int
 # 200373: 3xK Tech GmbH/DREI-K-TECH-GMBH
 # 200590: NLS Kazakhstan LLC
 # 200593: PROSPERO-AS|.ru
@@ -502,7 +504,7 @@
 # 202412: Omegatech LTD  ·  omegatech.sc|.nl
 # 202425: INT-NETWORK|.nl
 # 202838: INTERCOM|.ru
-# 203020: HostRoyale Technologies Pvt Ltd|.es
+# 203020: HostRoyale Technologies Pvt Ltd|.in,.int
 # 203214: HULUMTELE|.iq
 # 203241: Internet Vikings International AB|.se
 # 203446: SMARTNET LIMITED|.de
@@ -517,9 +519,9 @@
 # 205659: UAB code200|.lt,.int
 # 205759: Ghosty Networks LLC|.nl,.us
 # 205800: STEPS-TELECOM-AS|.iq
-# 206092: SECFIREWALLAS/VPN Consumer New York City/F.N.S. Holdings Limited|.us,cy
+# 206092: SECFIREWALLAS/VPN Consumer New York City/F.N.S. Holdings Limited|.us,.cy
 # 206206: KNET|.iq
-# 206216: ADVIN-AS
+# 206216: Advin Services LLC|.us,.int
 # 206479: ACERDP|.us
 # 206657: CABLEVISION|.es
 # 206791: SBY-TELECOM-AS|.ua
@@ -543,7 +545,7 @@
 # 209847: WorkTitans B.V. - the.hosting|.int
 # 209854: Cyberzon S.A|.bd
 # 210457: KYONIX|.de
-# 210558: 1337 Services GmbH/SERVICES-1337-GMBH 1337-SERVICES-GMBH-NETWORK
+# 210558: 1337 Services GmbH|.de,.int
 # 210644: AEZA-AS|.de
 # 210731: DOTSRC|.dk
 # 210743: BABBAR-AS/L'ile aux surfers s.a.r.l. bot ASN|.fr
@@ -553,25 +555,30 @@
 # 211590: FBW NETWORKS SAS/BUCKLOG|.fr
 # 211619: MAXKO|.hr
 # 211659: STIMUL-AS/Oniks LLC|.ru
-# 211680: AS-BITSIGHT/INAP-AMS-1|.nl,.us
+# 211680: NSEC - Sistemas Informaticos, S.A.|.pt,.us
 # 211720: Datashield Inc|.ch
 # 211860: Nerushenko Vyacheslav Nikolaevich|.ru
 # 212238: CDNEXT/Datacamp Limited
 # 212286: LONCONNECT|.uk
 # 212317: HETZNER-CLOUD3-AS|.us
 # 212341: CSN-Solutions GmbH|.de
+# 212512: Detai Prosperous Technologies Limited|.uk,.int
 # 212661: VODAFONE-OMAN|.om
 # 213035: AS-SERVERION Serverion B.V.|.nl
-# 213230: HETZNER-CLOUD2-AS|.us
+# 213230: Hetzner Online GmbH|.us
+# 213250: ITP-Solutions GmbH & Co|.de,.int
+# 213354: INTERNATIONAL HOSTING SOLUTIONS LLP|.cz
 # 213412: ONYPHE SAS|.fr
 # 213438: COLOCATEL-INC Colocatel Network - High Bandwidth Dedicated Servers
 # 213441: SLAYER GROUP LIMITED|.uk,.int
+# 213737: AYOSOFT LTD|.nl,.us
 # 213772: BK-CUST BK Customers|.lt
-# 213790: LIMITEDNETWORK-AS|.uk
+# 213790: Limited Network Ltd|.uk
 # 213877: u1host ltd|.uk
 # 214062: ITITANHOSTING|.de
 # 214094: OSSERVATORIO-NESSUNO|.it
-# 214209: INTERNET-MAGNATE
+# 214209: Internet Magnate Pty Ltd|.za,.ro
+# 214472: Offshore LC|.nl
 # 214503: QuxLabs AB
 # 214574: Biterika Group LLC|.ru
 # 214640: HOSTUP|.se
@@ -586,11 +593,12 @@
 # 215439: PLAY2GO-NET|.de
 # 215540: GLOBAL CONNECTIVITY SOLUTIONS LLP|.fr
 # 215590: DPKGSOFT-AS|.de
-# 215607: DF-TRANSIT|.de
+# 215607: dataforest GmbH|.de,.int
 # 215659: MOEMOEKYUN|.uk
-# 215826: PARTNER-HOSTING-LTD
+# 215703: FREAKHOSTING LTD|.uk,.int
+# 215826: Partner Hosting LTD|.uk
 # 215910: MY_NET-TV_EDMA|.al
-# 215925: Dedicated Servers and VPS Hosting by VPSVAULT.HOST
+# 215925: VPSVAULT.HOST LTD|.int
 # 216071: VDSINA|.nl
 # 216078: Liam Kremer trading as Trivox|.nl
 # 216099: HOSTINODE
@@ -665,8 +673,8 @@
 # 395839: HOSTKEY-USA
 # 395954: Leaseweb Inc|.us,.int
 # 396190: Leaseweb Inc|.us,.int
-# 396319: US-INTERNET-396319 - Oxylabs|.us
-# 396356: ATITUDE-SH/VPN Consumer New Jersey, United States of America|.us
+# 396319: Oxylabs|.us
+# 396356: Latitude.sh|.us
 # 396362: LEASEWEB-USA-NYC|.us
 # 396507: EMERALD-ONION|.us
 # 396982: Google LLC/Palo Alto Networks, Inc|.us
@@ -685,53 +693,55 @@
 # 399979: AS-493NETWORKING|.de
 # 400175: Microtronix ESolutions LLC
 # 400587: RYAMER|.us
+# 400810: BreezeHost|.us,.int
 # 400940: Railway|.us
 # 401152: ADCIL-ASN-01
 # 401560: OneCable Network LLC|.us,.int
 # 401626: NETIFACE-TORONTO|.nl
 #
 (ip.src.asnum in {0 174 701 931 963 1101 1133 1942 2029 2914 3170 3257 3258 3356 3786 4213 4788 4818 6206 6939 7049 7385 7738 7979 8075 8151 8283
-8551 8560 9009 9087 9123 10704 10753 11320 11878 12552 12555 12586 12792 12816 12876 12989 12993 13213 13238 13332 14061 14315 14618 14670 14956
-15169 16276 16312 16417 16509 16628 17451 17762 18229 18779 19084 19148 19318 20011 20207 20278 20473 20485 20853 20860 21211 21277 21299 21499 21769
-21826 21859 22295 22439 22612 22927 23033 23470 23576 23674 23693 24389 24432 24806 24940 24961 25019 25159 25288 25737 26210 26496 26548 26599 26658
-26667 26827 27176 27660 27665 27699 27738 27747 27768 27823 27882 27901 27947 28126 28198 28283 28294 28509 28548 28555 28573 28649 28753 28787 29066
-29182 29262 29355 29465 29695 29802 29873 30058 30060 30633 30823 30844 30860 30893 30900 31034 31224 31898 32097 32613 32934 33368 33576 34081 34295
-34305 34524 34665 34984 35048 35251 35765 35805 35819 35830 35908 36007 36183 36352 36680 36692 36866 36873 36884 36903 36907 36924 36925 36926 36947
-37105 37119 37284 37342 37461 37616 37705 38235 38264 38466 38623 39216 39351 39486 39845 39855 40021 40355 40663 40676 41075 41281 41341 41564 41608
-41745 42277 42313 42366 42624 42708 42724 42772 42831 42926 43037 43128 43180 43350 43357 43444 43513 43641 44050 44133 44144 44217 44244 44382 44558
-44559 44709 44725 45609 45671 45766 45899 46261 46475 46562 46606 46664 46918 47237 47583 47794 47890 48031 48090 48230 48279 48282 48492 48753 48832
+8551 8560 9009 9087 9123 10704 10753 11320 11798 11878 12552 12555 12586 12792 12816 12876 12989 12993 13213 13238 13332 14061 14315 14618 14670
+14956 15169 16276 16312 16417 16509 16628 17252 17451 17762 18229 18779 19084 19148 19318 20011 20207 20278 20473 20485 20853 20860 21211 21277 21299
+21499 21769 21826 21859 22295 22439 22612 22927 23033 23470 23576 23674 23693 24389 24432 24806 24940 24961 25019 25159 25288 25737 26210 26496 26548
+26599 26658 26667 26827 27176 27660 27665 27699 27738 27747 27768 27823 27882 27901 27947 28126 28198 28283 28294 28509 28548 28555 28573 28649 28753
+28787 29066 29182 29262 29355 29465 29695 29802 29873 30058 30060 30633 30823 30844 30860 30893 30900 31034 31224 31898 32097 32613 32934 33368 33576
+34081 34295 34305 34524 34665 34984 35048 35251 35765 35805 35819 35830 35908 36007 36183 36352 36680 36692 36866 36873 36884 36907 36924 36925 36926
+36947 37105 37119 37284 37342 37461 37616 37705 38235 38264 38466 38623 38880 39216 39351 39486 39845 39855 40021 40355 40663 40676 41075 41281 41341
+41564 41608 41745 42277 42313 42366 42624 42708 42724 42772 42831 42926 43037 43128 43180 43350 43357 43444 43513 43641 44050 44133 44144 44217 44244
+44382 44558 44559 44709 44725 45609 45671 45766 46261 46475 46562 46606 46664 46918 47237 47583 47794 47890 48031 48090 48230 48279 48282 48753 48832
 48955 49238 49453 49505 49825 49981 50300 50304 50340 50673 51013 51167 51247 51290 51332 51396 51430 51747 51765 51852 51913 52253 52263 52300 52393
-52485 53222 53366 53514 53667 53791 53813 53856 54103 54113 54290 55286 55803 55836 56309 56655 56696 56971 57169 57523 57794 58061 58065 58087 58477
-58487 58682 58689 59257 59588 59668 59711 59891 60068 60223 60404 60729 60781 61125 61272 61317 61503 61512 61649 61806 61934 61960 62005 62240 62563
-62633 62713 62874 63023 63473 63949 64267 64286 64445 131111 131267 131353 131386 131628 131950 132165 132241 132817 133001 133181 133210 133296
-133499 133661 133770 133982 134004 134226 134351 134356 134450 134806 134926 134970 135071 135300 135310 135450 135478 135661 135746 135905 136170
-136429 136525 136557 136787 137409 137967 138915 139341 139786 139952 139981 140577 141039 141892 141995 142002 142352 147049 147303 149187 149440
-149809 150371 150436 150895 151330 151592 151957 153307 197019 197450 197540 197706 198093 198488 198589 198953 199284 199404 199654 199739 199785
-200019 200107 200373 200590 200593 200651 201201 201814 201838 202015 202044 202306 202412 202425 202838 203020 203214 203241 203446 203999 204428
-204646 204770 204957 205100 205352 205544 205659 205759 205800 206092 206206 206216 206479 206657 206791 206804 206996 207097 207847 207990 207994
-208137 208172 208258 208323 208324 209193 209272 209366 209605 209709 209767 209847 209854 210457 210558 210644 210731 210743 210906 211298 211301
-211590 211619 211659 211680 211720 211860 212238 212286 212317 212341 212661 213035 213230 213412 213438 213441 213772 213790 213877 214062 214094
-214209 214503 214574 214640 214940 214943 214967 214976 214996 215026 215089 215125 215439 215540 215590 215607 215659 215826 215910 215925 216071
-216078 216099 216341 216472 262197 262287 262296 262310 262462 262813 262847 262973 263020 263073 263537 263641 263693 263740 263751 263769 263812
-263821 264315 264342 264496 264514 264617 264872 264990 265641 265671 265691 265817 266107 266553 266841 267829 268055 268146 268732 269405 269730
-269819 269832 270006 270035 270158 270448 270685 270865 271104 271855 272112 272403 272807 273412 273953 327693 327750 327931 327934 328364 328480
-328856 328884 329426 393886 394474 394684 394727 395839 395954 396190 396319 396356 396362 396507 396982 397373 397423 398019 398090 398101 398324
-398705 398722 399073 399486 399629 399820 399979 400175 400587 400940 401152 401560 401626})
+52485 53222 53366 53514 53667 53791 53813 53856 54103 54113 54290 55256 55286 55736 55803 55836 56309 56655 56696 56971 57169 57523 57682 57794 58061
+58065 58087 58477 58487 58682 58689 59257 59588 59651 59668 59711 59891 60068 60223 60404 60729 60781 61125 61272 61317 61503 61512 61649 61806 61934
+61960 62005 62240 62563 62633 62713 62874 63023 63473 63949 64160 64267 64286 64445 131111 131267 131353 131386 131628 131950 132165 132241 132817
+133001 133181 133210 133296 133499 133661 133770 133982 134004 134226 134351 134356 134450 134806 134926 134970 135071 135300 135310 135450 135478
+135661 135746 135905 136170 136429 136525 136557 136787 137409 137967 138115 138915 139341 139786 139952 139981 140577 141039 141892 141995 142002
+142352 147049 147303 149187 149440 149809 150371 150436 150895 151330 151592 151957 153307 197019 197450 197540 197706 198093 198488 198589 198953
+199064 199284 199404 199654 199785 200019 200107 200373 200590 200593 200651 201201 201814 201838 202015 202044 202306 202412 202425 202838 203020
+203214 203241 203446 203999 204428 204646 204770 204957 205100 205352 205544 205659 205759 205800 206092 206206 206216 206479 206657 206791 206804
+206996 207097 207847 207990 207994 208137 208172 208258 208323 208324 209193 209272 209366 209605 209709 209767 209847 209854 210457 210558 210644
+210731 210743 210906 211298 211301 211590 211619 211659 211680 211720 211860 212238 212286 212317 212341 212512 212661 213035 213230 213250 213354
+213412 213438 213441 213737 213772 213790 213877 214062 214094 214209 214472 214503 214574 214640 214940 214943 214967 214976 214996 215026 215089
+215125 215439 215540 215590 215607 215659 215703 215826 215910 215925 216071 216078 216099 216341 216472 262197 262287 262296 262310 262462 262813
+262847 262973 263020 263073 263537 263641 263693 263740 263751 263769 263812 263821 264315 264342 264496 264514 264617 264872 264990 265641 265671
+265691 265817 266107 266553 266841 267829 268055 268146 268732 269405 269730 269819 269832 270006 270035 270158 270448 270685 270865 271104 271855
+272112 272403 272807 273412 273953 327693 327750 327931 327934 328364 328480 328856 328884 329426 393886 394474 394684 394727 395839 395954 396190
+396319 396356 396362 396507 396982 397373 397423 398019 398090 398101 398324 398705 398722 399073 399486 399629 399820 399979 400175 400587 400810
+400940 401152 401560 401626})
 
 # Chinese and Hong Kong ASNs with servers screen scraping
 #
 # 979: NETLAB-SDN|.hk
 # 4134: CHINANET Guangdong province network|.cn
 # 4760: Hong Kong Telecommunications Limited Mass|.hk
-# 4808: CHINA169-BJ China Unicom Beijing Province Network|.cn
-# 4811: CHINANET-SHANGHAI-MAN China Telecom Group|.cn
-# 4812: CHINANET SHANGHAI PROVINCE NETWORK/CHINANET-SH-AP China Telecom Group|.cn
-# 4816: CHINANET-IDC-GD China Telecom Group|.cn
-# 4837: China United Network Communications Corporation Li...|.cn
+# 4808: China Unicom Beijing Province Network|.cn
+# 4811: China Telecom Group|.cn
+# 4812: China Telecom Group|.cn
+# 4816: China Telecom Group|.cn
+# 4837: CHINA UNICOM China169 Backbone|.cn
 # 4847: CHINANET Beijing province network/CNIX-AP China Networks Inter-Exchange|.cn
 # 7497: CSTNET-AS-AP Computer Network Information Center of Chinese Academy of Sciences CNIC-CAS|.cn
 # 9269: Hong Kong Broadband Network Ltd|.hk
-# 9808: CHINAMOBILE-CN China Mobile Communications Corporation|.cn
+# 9808: China Mobile Communications Group Co Ltd|.cn
 # 17621: CNCGROUP-SH China Unicom Shanghai network|.cn
 # 17622: CNCGROUP-GZ China Unicom Guangzhou network|.cn
 # 17623: CNCGROUP-SZ China Unicom Shenzen network|.cn
@@ -749,18 +759,19 @@
 # 24547: CMNET-V4HEBEI-AS-AP Hebei Mobile Communication Company Limited|.cn
 # 37963: ALIBABA-CN-NET Hangzhou Alibaba Advertising Co.,Ltd.|.cn
 # 38019: tianjin Mobile Communication Company Limited|.cn
+# 38136: Akari Networks|.hk,.int
 # 39220: CHINANET-SICHUAN-CHUANXI-IDC Sichuan Chuanxn IDC|.cn
 # 45090: Tencent Cloud Computing (Beijing) Co., Ltd|.cn
 # 45102: ALIBABA-CN-NET Alibaba US Technology Co., Ltd.|.cn
 # 55933: Cloudie Limited|.hk,.int
 # 55967: Beijing Baidu Netcom Science and Technology Co. Ltd|.cn
 # 55990: HWCSNET Huawei Cloud Service data center|.cn
-# 56040: CMNET-GUANGDONG-AP China Mobile communications corporation|.cn
+# 56040: China Mobile communications corporation|.cn
 # 56041: China Mobile communications corporation|.cn
-# 56044: CMNET-AS-LIAONING China Mobile communications corporation|.cn
-# 56045: CMNET-JIANGXI-AP China Mobile communications corporation|.cn
-# 56046: CMNET-JIANGSU-AP China Mobile Communications Corporation|.cn
-# 56047: CMNET-HUNAN-AP China Mobile communications corporation|.cn
+# 56044: China Mobile communications corporation|.cn
+# 56045: China Mobile communications corporation|.cn
+# 56046: China Mobile Communications Corporation|.cn
+# 56047: China Mobile communications corporation|.cn
 # 58411: GTDCL-HK Unit A-E, 13F, Golden Sun Centre|.hk
 # 58461: CHINANET-ZJ Jiaxing node network/CT-HANGZHOU-IDC No.288,Fu-chun Road|.cn
 # 58519: CHINATELECOM-CTCLOUD Cloud Computing Corporation|.cn
@@ -772,14 +783,15 @@
 # 132203: Tencent (Chinese Tech Firm)|.hk
 # 132525: CMNET-HEILONGJIANG-CN HeiLongJiang Mobile Communication Company Limited|.cn
 # 134420: CHINATELECOM-CHONGQING-IDC Chongqing Telecom|.cn
+# 134425: China Telecom|.cn
 # 134756: Chinanet Jiangsu Province Network|.cn
 # 134760: CHINANET-HEBEI-SHIJIAZHUANG-IDC Shijiazhuang IDC network, CHINANET Hebei province|.cn
 # 134768: CHINANET SHAANXI province Cloud Base network|.cn
 # 135089: CHINANET-GUANGZHOU-SOUTHBASE-IDC China Telecom|.cn
-# 135377: UCLOUD-HK-AS-AP UCLOUD INFORMATION TECHNOLOGY HK LIMITED|.hk
+# 135377: UCLOUD INFORMATION TECHNOLOGY HK LIMITED|.hk
 # 136188: NINGBO, ZHEJIANG Province|.cn
 # 136190: CHINATELECOM-ZHEJIANG-JINHUA-IDC JINHUA, ZHEJIANG Province, P.R.China.|.cn
-# 136907: Huawei Hong Kong Clouds|.hk
+# 136907: Huawei Hong Kong Clouds|.hk,.sg
 # 137687: CHINATELECOM-HENAN-LUOYANG-IDC Luoyang, Henan Province, P.R.China.|.cn
 # 137718: VOLCANO-ENGINE Beijing Volcano Engine Technology Co., Ltd.|.cn
 # 138982: CHINANET-HUBEI-JIANGXIA-IDC Hubei Jiangxia IDC|.cn
@@ -794,10 +806,10 @@
 # 141679: China Telecom Beijing Tianjin Hebei Big Data Industry Park Branch|.cn
 # 141998: CHINANET-LANZHOU-IDC China Telecom|.cn
 # 146817: Hubei Feixun Network Co., Ltd|.cn
-# 146966: CHINANET-YANGZHOUNORTH-IDC China Telecom|.cn
-# 149178: CT-HEFEI-NANGANG-IDC China Telecom|.cn
+# 146966: China Telecom|.cn
+# 149178: China Telecom|.cn
 # 152194: CTG Server Ltd.|.hk
-# 153656: HKISP-AS-AP OWGELS INTERNATIONAL CO., LIMITED|.hk
+# 153656: OWGELS INTERNATIONAL Cc Ltd|.hk
 # 153671: Liasail Global Hongkong Limited|.int
 # 199524: G-Core Labs S.A.|.hk
 # 206264: AMARUTU-TECHNOLOGY|.hk
@@ -805,9 +817,9 @@
 # 215929: Data Campus Limited|.hk,.int
 #
 (ip.src.asnum in {979 4134 4760 4808 4811 4812 4816 4837 4847 7497 9269 9808 17621 17622 17623 17638 17789 17816 17924 17962 23724 24151 24348 24400
-24444 24445 24547 37963 38019 39220 45090 45102 55933 55967 55990 56040 56041 56044 56045 56046 56047 58411 58461 58519 58563 58772 59223 63838
-132153 132203 132525 134420 134756 134760 134768 135089 135377 136188 136190 136907 137687 137718 138982 138995 139201 139220 140061 140293 140308
-140527 140726 141679 141998 146817 146966 149178 152194 153656 153671 199524 206264 214669 215929})
+24444 24445 24547 37963 38019 38136 39220 45090 45102 55933 55967 55990 56040 56041 56044 56045 56046 56047 58411 58461 58519 58563 58772 59223 63838
+132153 132203 132525 134420 134425 134756 134760 134768 135089 135377 136188 136190 136907 137687 137718 138982 138995 139201 139220 140061 140293
+140308 140527 140726 141679 141998 146817 146966 149178 152194 153656 153671 199524 206264 214669 215929})
 
 # ISP ASNs with servers screen scraping on their network
 #
@@ -957,6 +969,7 @@
 # 24550: Websurfer Nepal Internet Service Provider|.np
 # 24556: Bijoy Online Ltd. Multihome Internet Service Provider|.bd
 # 24560: Bharti Airtel Ltd.|.in
+# 24651: JSC BALTICOM|.lt
 # 24691: TogoTelecom|.tg
 # 24757: Ethio Telecom|.et
 # 24940: Hetzner Online GmbH|.int
@@ -979,6 +992,7 @@
 # 32987: Clnetworks Inc|.us
 # 33915: Vodafone Libertel B.V.|.nl
 # 35753: ITC AS number|.sa
+# 36903: Office National des Postes et Telecommunications ONPT|.ma
 # 36994: Vodacom|.za
 # 37049: SADV (Pty) Ltd|.za
 # 37061: Safaricom Limited|.ke
@@ -998,9 +1012,11 @@
 # 45271: Vodafone Idea Ltd|.in
 # 45528: Tikona Infinet Ltd|.in
 # 45650: VIA NET COMMUNICATION LTD|.np
+# 45899: Vietnam Posts and Telecommunications Group|.vn
 # 45905: Stargate Communications Ltd|.bd
 # 45916: Gujarat Telelink Pvt Ltd|.in
 # 45960: YTL COMMUNICATIONS SDN BHD|.my
+# 48492: I.Q Online for Internet Services and Communications LLC|.iq
 # 48503: Tele2 Kazakhstan|.kz
 # 48728: Vodafone Qatar P.Q.S.C|.qa
 # 50010: Omani Qatari Telecommunication Company SAOC|.om
@@ -1011,6 +1027,7 @@
 # 51020: Al-Jazeera Al-Arabiya Company for Communication and Internet LTD|.iq
 # 51265: Mass Response Service GmbH|.at
 # 51684: ASIACELL COMMUNICATIONS PJSC|.iq
+# 51809: BRSK Limited
 # 52444: Pogliotti & Pogliotti Construcciones S.A.|.ar
 # 52468: UFINET PANAMA S.A.|.pa
 # 52637: Station Net Provedor de Internet|.br
@@ -1033,7 +1050,6 @@
 # 58715: EARTH TELECOMMUNICATION PVT LTD|.bd
 # 58955: Bangmod Enterprise Co. Ltd.|.th
 # 58965: ANJANI BROADBAND SOLUTIONS PVT LTD|.in
-# 59651: AS QualityNetwork|.il
 # 61223: LINKFOR LLC|.ru
 # 61461: Airtek Solutions C.A.|.ve
 # 61766: Adenor Luiz Gnoatto ME|.br
@@ -1071,6 +1087,7 @@
 # 152185: Webex Broadband Internet|.bd
 # 153252: ELXIRE|.id
 # 198735: Optimal Solutions Technology Company for information Technology and software solutions Ltd|.iq
+# 199739: Earthlink Telecommunications Equipment Trading & Services DMCC|.iq
 # 201749: SUPER CELL NETWORK FOR INTERNET SERVICES LTD|.iq
 # 202987: Fiber Networks Services S.A.R.L|.lb
 # 204170: Awaser Oman LLC|.om
@@ -1079,7 +1096,7 @@
 # 208972: GIBIRNET ILETISIM HIZMETLERI SANAYI VE TICARET LIMITED SIRKETI|.tr
 # 209372: WS Telecom Inc|.us
 # 213541: WS Telecom Inc|.us,.int
-# 213954: Global Transit Systems LLC|.us
+# 213954: Global Transit Systems LLC|.us,.int
 # 262317: ROS Telecom|.br
 # 262434: WIIP TELECOM SERVIÇOS DE INTERNET LTDA|.br
 # 262616: Virtual Slice Telecom Ltda|.br
@@ -1133,11 +1150,12 @@
 8402 8449 8452 8661 8697 8708 8767 8781 8814 8881 8953 8966 9038 9051 9121 9299 9318 9341 9541 9829 10139 10242 10796 11426 11427 11556 11664 11830
 11888 12083 12091 12271 12322 12365 12389 12400 12479 12714 12735 12975 12978 13036 13188 13347 13489 13999 14007 14117 14638 14709 14754 15706 15723
 15802 15895 15943 16010 16223 16591 16637 17072 17079 17469 17501 17557 17639 17676 17882 17917 18004 18209 18229 18403 18809 18881 19108 19429 19901
-20115 21928 22047 22363 22772 22773 23201 23969 24309 24550 24556 24560 24691 24757 24940 27717 27895 27940 28036 28409 28537 28598 28656 28885 29256
-29555 29571 29975 30436 31252 31272 32987 33915 35753 36994 37049 37061 37577 38067 38266 39010 39568 39891 41329 41403 42610 42682 42828 43766 44814
-45271 45528 45650 45905 45916 45960 48503 48728 50010 50012 50077 50648 50810 51020 51265 51684 52444 52468 52637 52651 52695 52752 52898 53052 53081
-53142 53194 53196 55699 55862 56262 57582 57764 57999 58224 58715 58955 58965 59651 61223 61461 61766 62386 62419 63526 64080 132167 133287 134128
-134186 134732 134990 135341 135407 136014 136929 137034 137085 137385 137561 138089 138655 138754 141127 141209 141731 142488 147106 147302 150384
-150683 151474 152168 152185 153252 198735 201749 202987 204170 205565 206026 208972 209372 213541 213954 262317 262434 262616 262662 262663 262893
-263151 263242 263468 263544 263609 263656 263728 263941 263980 264758 265369 265465 265721 265862 265903 265947 266346 266466 267490 267700 267728
-268047 268323 268418 269217 269782 269907 270690 270844 270925 271689 272137 273182 273244 273314 273363 273966 274644 328471 328539 329014})
+20115 21928 22047 22363 22772 22773 23201 23969 24309 24550 24556 24560 24651 24691 24757 24940 27717 27895 27940 28036 28409 28537 28598 28656 28885
+29256 29555 29571 29975 30436 31252 31272 32987 33915 35753 36903 36994 37049 37061 37577 38067 38266 39010 39568 39891 41329 41403 42610 42682 42828
+43766 44814 45271 45528 45650 45899 45905 45916 45960 48492 48503 48728 50010 50012 50077 50648 50810 51020 51265 51684 51809 52444 52468 52637 52651
+52695 52752 52898 53052 53081 53142 53194 53196 55699 55862 56262 57582 57764 57999 58224 58715 58955 58965 61223 61461 61766 62386 62419 63526 64080
+132167 133287 134128 134186 134732 134990 135341 135407 136014 136929 137034 137085 137385 137561 138089 138655 138754 141127 141209 141731 142488
+147106 147302 150384 150683 151474 152168 152185 153252 198735 199739 201749 202987 204170 205565 206026 208972 209372 213541 213954 262317 262434
+262616 262662 262663 262893 263151 263242 263468 263544 263609 263656 263728 263941 263980 264758 265369 265465 265721 265862 265903 265947 266346
+266466 267490 267700 267728 268047 268323 268418 269217 269782 269907 270690 270844 270925 271689 272137 273182 273244 273314 273363 273966 274644
+328471 328539 329014})
