@@ -98,8 +98,12 @@ def get_stable_ipv6(dev):
                 continue
 
             match = re.search(r"^\s*inet6\s+([0-9a-fA-F:]+)/\d+", line)
-            if match:
-                return match.group(1)
+            if not match:
+                continue
+
+            stableIP = match.group(1)
+            if is_global_ip(stableIP) == "wanv6":
+                return stableIP
     except Exception:
         pass
 
